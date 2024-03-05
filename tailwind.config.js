@@ -2,7 +2,21 @@
 export default {
     content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
     theme: {
-        extend: {},
+        extend: {
+            animation: {
+                buttonPress: "buttonPress 0.09s linear",
+            },
+            keyframes: {
+                buttonPress: {
+                    "0%": { transform: "scale(1)", filter: "brightness(1)" },
+                    "50%": {
+                        transform: "scale(0.9)",
+                        filter: "brightness(0.5)",
+                    },
+                    "100%": { transform: "scale(1)", filter: "brightness(1)" },
+                },
+            },
+        },
     },
     plugins: [],
 };

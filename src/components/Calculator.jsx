@@ -116,7 +116,7 @@ const Calculator = () => {
                 </div>
                 {/* Buttons */}
                 <div
-                    className="[&>div>button]:border-[2px] [&>div>button]:rounded-md [&>div>button]:m-2 p-3 "
+                    className="[&>div>button]:border-[2px] [&>div>button]:rounded-md [&>div>button]:m-2 p-3 [&>div>button]:transition [&>div>button]:ease-in-out [&>div>button:active]:animate-buttonPress"
                     id="buttons"
                 >
                     {/* Buttons: Row 0 */}
@@ -326,6 +326,7 @@ const Calculator = () => {
                         <button
                             className="bg-[#e7e6db] border-t-[#FAFBF2] border-transparent text-[#25251D] text-xl  w-10 h-10 sm:h-14 sm:w-14"
                             onClick={() => {
+                                // NEEDS FIXING
                                 if (!screen.includes(".")) {
                                     setScreen(screen + ".");
                                 }
