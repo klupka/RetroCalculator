@@ -4,9 +4,8 @@ import { useState } from "react";
 const Calculator = () => {
     const [screen, setScreen] = useState("0");
     const [operandOne, setOperandOne] = useState("");
+    const [operandTwo, setOperandTwo] = useState("");
     const [operation, setOperation] = useState("");
-    let currScreen = screen;
-    let tempScreen;
 
     function addition(opOne, opTwo) {
         const result = parseFloat(opOne) + parseFloat(opTwo);
@@ -20,6 +19,7 @@ const Calculator = () => {
 
     function subtract(opOne, opTwo) {
         const result = parseFloat(opOne) - parseFloat(opTwo);
+        console.log(parseFloat(opOne), parseFloat(opTwo));
         return result;
     }
 
@@ -36,39 +36,59 @@ const Calculator = () => {
     function executeOperation() {
         if (operation) {
             if (operation === "addition") {
-                console.log("op1", operandOne);
-                console.log("op2", screen);
-                let result = addition(operandOne, screen);
-                setScreen(result.toString());
-                setOperation("");
+                let result = addition(operandOne, operandTwo);
+                return result.toString();
             }
             if (operation === "multiply") {
-                // console.log("op1", operandOne);
-                // console.log("op2", screen);
-                console.log("multiply executed");
-                let result = multiply(operandOne, screen);
-                setScreen(result.toString());
-                setOperation("");
+                let result = multiply(operandOne, operandTwo);
+                return result.toString();
             }
             if (operation === "subtract") {
-                console.log("op1", operandOne);
-                console.log("op2", screen);
-                let result = subtract(operandOne, screen);
-                setScreen(result.toString());
-                setOperation("");
+                let result = subtract(operandOne, operandTwo);
+                return result.toString();
             }
             if (operation === "divide") {
-                console.log("op1", operandOne);
-                console.log("op2", screen);
-                let result = divide(operandOne, screen);
-                setScreen(result.toString());
-                setOperation("");
+                let result = divide(operandOne, operandTwo);
+                return result.toString();
             }
             if (operation === "mod") {
-                let result = mod(operandOne, screen);
-                setScreen(result.toString());
-                setOperation("");
+                let result = mod(operandOne, operandTwo);
+                return result.toString();
             }
+        }
+    }
+
+    function handleNumberButtonPress(buttonValue) {
+        if (screen !== "0" && operation === "") {
+            setScreen(operandOne + buttonValue);
+            setOperandOne(operandOne + buttonValue);
+            console.log("op1 = ", operandOne + buttonValue);
+        } else if (screen === "0") {
+            setScreen(buttonValue);
+            setOperandOne(buttonValue);
+            console.log("op1 = ", buttonValue);
+        }
+        if (operation !== "") {
+            setScreen(operandTwo + buttonValue);
+            setOperandTwo(operandTwo + buttonValue);
+            console.log("op2 = ", operandTwo + buttonValue);
+        }
+        if (operation !== "" && screen === "0") {
+            setScreen(buttonValue);
+            setOperandTwo(buttonValue);
+            console.log("op2 = ", buttonValue);
+        }
+    }
+
+    function handleOperationButtonPress(operationButton) {
+        if (operation !== "" && operandOne !== "" && operandTwo !== "") {
+            let result = executeOperation();
+            setOperandOne(result);
+            setOperandTwo("");
+            setScreen(result);
+            setOperation(operationButton);
+        } else if (operation === "") {
+            setOperation(operationButton);
         }
     }
 
@@ -105,6 +125,13 @@ const Calculator = () => {
                             className="bg-[#DA7247] border-t-[#FBA57C] border-transparent text-[#25251D] text-lg w-10 h-10 sm:h-14 sm:w-14"
                             onClick={() => {
                                 setScreen("0");
+                                setOperandOne("");
+                                setOperandTwo("");
+                                setOperation("");
+
+                                console.log(
+                                    "Cleared op1, op2, operation, and screen = 0"
+                                );
                             }}
                         >
                             C
@@ -112,9 +139,47 @@ const Calculator = () => {
                         <button
                             className="bg-[#e7e6db] border-t-[#FAFBF2] border-transparent text-[#DA7247] text-base w-10 h-10 sm:h-14 sm:w-14"
                             onClick={() => {
-                                if (screen !== "0") {
-                                    currScreen = currScreen.slice(0, -1);
-                                    setScreen(currScreen);
+                                if (operandTwo === "" && operation === "") {
+                                    if (screen !== "0") {
+                                        let tempScreenValue = screen.slice(
+                                            0,
+                                            -1
+                                        );
+                                        let newScreenValue = "";
+                                        if (tempScreenValue === "") {
+                                            newScreenValue = "0";
+                                        } else {
+                                            newScreenValue = screen.slice(
+                                                0,
+                                                -1
+                                            );
+                                        }
+                                        setScreen(newScreenValue);
+                                        setOperandOne(newScreenValue);
+                                        console.log("op1 = ", newScreenValue);
+                                    }
+                                } else if (
+                                    operandOne !== "" &&
+                                    operation !== ""
+                                ) {
+                                    if (screen !== "0") {
+                                        let tempScreenValue = screen.slice(
+                                            0,
+                                            -1
+                                        );
+                                        let newScreenValue = "";
+                                        if (tempScreenValue === "") {
+                                            newScreenValue = "0";
+                                        } else {
+                                            newScreenValue = screen.slice(
+                                                0,
+                                                -1
+                                            );
+                                        }
+                                        setScreen(newScreenValue);
+                                        setOperandTwo(newScreenValue);
+                                        console.log("op2 = ", newScreenValue);
+                                    }
                                 }
                             }}
                         >
@@ -123,19 +188,17 @@ const Calculator = () => {
                         <button
                             className="bg-[#5A9FAE] border-t-[#A5DFE9] border-transparent text-[#25251D] text-lg w-10 h-10 sm:h-14 sm:w-14"
                             onClick={() => {
-                                setOperandOne(screen);
-                                setOperation("mod");
-                                setScreen("0");
+                                const operationButton = "mod";
+                                handleOperationButtonPress(operationButton);
                             }}
                         >
                             %
                         </button>
                         <button
-                            className="bg-[#5A9FAE] border-t-[#A5DFE9] w-14 border-transparent text-[#25251D] text-lg w-10 h-10 sm:h-14 sm:w-14"
+                            className="bg-[#5A9FAE] border-t-[#A5DFE9] border-transparent text-[#25251D] text-lg w-10 h-10 sm:h-14 sm:w-14"
                             onClick={() => {
-                                setOperandOne(screen);
-                                setOperation("divide");
-                                setScreen("0");
+                                const operationButton = "divide";
+                                handleOperationButtonPress(operationButton);
                             }}
                         >
                             /
@@ -146,12 +209,8 @@ const Calculator = () => {
                         <button
                             className="bg-[#e7e6db] border-t-[#FAFBF2] border-transparent text-[#25251D] text-xl w-10 h-10 sm:h-14 sm:w-14"
                             onClick={() => {
-                                if (screen !== "0") {
-                                    currScreen = screen + "7";
-                                } else {
-                                    currScreen = "7";
-                                }
-                                setScreen(currScreen);
+                                const buttonValue = "7";
+                                handleNumberButtonPress(buttonValue);
                             }}
                         >
                             7
@@ -159,12 +218,8 @@ const Calculator = () => {
                         <button
                             className="bg-[#e7e6db] border-t-[#FAFBF2] border-transparent text-[#25251D] text-xl w-10 h-10 sm:h-14 sm:w-14"
                             onClick={() => {
-                                if (screen !== "0") {
-                                    currScreen = screen + "8";
-                                } else {
-                                    currScreen = "8";
-                                }
-                                setScreen(currScreen);
+                                const buttonValue = "8";
+                                handleNumberButtonPress(buttonValue);
                             }}
                         >
                             8
@@ -172,23 +227,17 @@ const Calculator = () => {
                         <button
                             className="bg-[#e7e6db] border-t-[#FAFBF2] border-transparent text-[#25251D] text-xl w-10 h-10 sm:h-14 sm:w-14"
                             onClick={() => {
-                                if (screen !== "0") {
-                                    currScreen = screen + "9";
-                                } else {
-                                    currScreen = "9";
-                                }
-                                setScreen(currScreen);
+                                const buttonValue = "9";
+                                handleNumberButtonPress(buttonValue);
                             }}
                         >
                             9
                         </button>
                         <button
-                            className="bg-[#5A9FAE] border-t-[#A5DFE9] border-transparent text-[#25251D] w-14 text-xl w-10 h-10 sm:h-14 sm:w-14"
+                            className="bg-[#5A9FAE] border-t-[#A5DFE9] border-transparent text-[#25251D] text-xl w-10 h-10 sm:h-14 sm:w-14"
                             onClick={() => {
-                                setOperandOne(screen);
-                                setOperation("multiply");
-                                console.log("multiply set");
-                                setScreen("0");
+                                const operationButton = "multiply";
+                                handleOperationButtonPress(operationButton);
                             }}
                         >
                             x
@@ -199,12 +248,8 @@ const Calculator = () => {
                         <button
                             className="bg-[#e7e6db] border-t-[#FAFBF2] border-transparent text-[#25251D] text-xl w-10 h-10 sm:h-14 sm:w-14"
                             onClick={() => {
-                                if (screen !== "0") {
-                                    currScreen = screen + "4";
-                                } else {
-                                    currScreen = "4";
-                                }
-                                setScreen(currScreen);
+                                const buttonValue = "4";
+                                handleNumberButtonPress(buttonValue);
                             }}
                         >
                             4
@@ -212,12 +257,8 @@ const Calculator = () => {
                         <button
                             className="bg-[#e7e6db] border-t-[#FAFBF2] border-transparent text-[#25251D] text-xl w-10 h-10 sm:h-14 sm:w-14"
                             onClick={() => {
-                                if (screen !== "0") {
-                                    currScreen = screen + "5";
-                                } else {
-                                    currScreen = "5";
-                                }
-                                setScreen(currScreen);
+                                const buttonValue = "5";
+                                handleNumberButtonPress(buttonValue);
                             }}
                         >
                             5
@@ -225,12 +266,8 @@ const Calculator = () => {
                         <button
                             className="bg-[#e7e6db] border-t-[#FAFBF2] border-transparent text-[#25251D] text-xl w-10 h-10 sm:h-14 sm:w-14"
                             onClick={() => {
-                                if (screen !== "0") {
-                                    currScreen = screen + "6";
-                                } else {
-                                    currScreen = "6";
-                                }
-                                setScreen(currScreen);
+                                const buttonValue = "6";
+                                handleNumberButtonPress(buttonValue);
                             }}
                         >
                             6
@@ -238,9 +275,8 @@ const Calculator = () => {
                         <button
                             className="bg-[#5A9FAE] border-t-[#A5DFE9] border-transparent text-[#25251D] text-xl  w-10 h-10 sm:h-14 sm:w-14"
                             onClick={() => {
-                                setOperandOne(screen);
-                                setOperation("subtract");
-                                setScreen("0");
+                                const operationButton = "subtract";
+                                handleOperationButtonPress(operationButton);
                             }}
                         >
                             -
@@ -251,12 +287,8 @@ const Calculator = () => {
                         <button
                             className="bg-[#e7e6db] border-t-[#FAFBF2] border-transparent text-[#25251D] text-xl  w-10 h-10 sm:h-14 sm:w-14"
                             onClick={() => {
-                                if (screen !== "0") {
-                                    currScreen = screen + "1";
-                                } else {
-                                    currScreen = "1";
-                                }
-                                setScreen(currScreen);
+                                const buttonValue = "1";
+                                handleNumberButtonPress(buttonValue);
                             }}
                         >
                             1
@@ -264,12 +296,8 @@ const Calculator = () => {
                         <button
                             className="bg-[#e7e6db] border-t-[#FAFBF2] border-transparent text-[#25251D] text-xl  w-10 h-10 sm:h-14 sm:w-14"
                             onClick={() => {
-                                if (screen !== "0") {
-                                    currScreen = screen + "2";
-                                } else {
-                                    currScreen = "2";
-                                }
-                                setScreen(currScreen);
+                                const buttonValue = "2";
+                                handleNumberButtonPress(buttonValue);
                             }}
                         >
                             2
@@ -277,12 +305,8 @@ const Calculator = () => {
                         <button
                             className="bg-[#e7e6db] border-t-[#FAFBF2] border-transparent text-[#25251D] text-xl  w-10 h-10 sm:h-14 sm:w-14"
                             onClick={() => {
-                                if (screen !== "0") {
-                                    currScreen = screen + "3";
-                                } else {
-                                    currScreen = "3";
-                                }
-                                setScreen(currScreen);
+                                const buttonValue = "3";
+                                handleNumberButtonPress(buttonValue);
                             }}
                         >
                             3
@@ -290,9 +314,8 @@ const Calculator = () => {
                         <button
                             className="bg-[#5A9FAE] border-t-[#A5DFE9] border-transparent text-[#25251D] text-xl  w-10 h-10 sm:h-14 sm:w-14"
                             onClick={() => {
-                                setOperandOne(screen);
-                                setOperation("addition");
-                                setScreen("0");
+                                const operationButton = "addition";
+                                handleOperationButtonPress(operationButton);
                             }}
                         >
                             +
@@ -304,8 +327,7 @@ const Calculator = () => {
                             className="bg-[#e7e6db] border-t-[#FAFBF2] border-transparent text-[#25251D] text-xl  w-10 h-10 sm:h-14 sm:w-14"
                             onClick={() => {
                                 if (!screen.includes(".")) {
-                                    currScreen = screen + ".";
-                                    setScreen(currScreen);
+                                    setScreen(screen + ".");
                                 }
                             }}
                         >
@@ -314,17 +336,24 @@ const Calculator = () => {
                         <button
                             className="bg-[#e7e6db] border-t-[#FAFBF2] border-transparent text-[#25251D] text-xl  w-10 h-10 sm:h-14 sm:w-14"
                             onClick={() => {
-                                if (screen !== "0") {
-                                    currScreen = screen + "0";
-                                    setScreen(currScreen);
-                                }
+                                const buttonValue = "0";
+                                handleNumberButtonPress(buttonValue);
                             }}
                         >
                             0
                         </button>
                         <button
                             className="bg-[#5A9FAE] border-t-[#A5DFE9] border-transparent text-[#25251D] text-lg w-[96px] h-10 sm:h-14 sm:w-[128px]"
-                            onClick={executeOperation}
+                            onClick={() => {
+                                if (operandOne !== "" && operandTwo != "") {
+                                    console.log("got through");
+                                    let result = executeOperation();
+                                    setOperandOne(result);
+                                    setOperandTwo("");
+                                    setScreen(result);
+                                    setOperation("");
+                                }
+                            }}
                         >
                             =
                         </button>
