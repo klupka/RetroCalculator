@@ -34,263 +34,300 @@ const Calculator = () => {
 
     return (
         // Body
-        <div className="border-red-500 border-2 rounded-md">
-            {/* Screen */}
-            <div className="border-red-500 border-2 h-24 rounded-md relative m-5">
-                {/* Screen Text */}
-                <div className="bottom-1 right-2 absolute text-6xl font-bold">
-                    {screen}
-                </div>
-            </div>
-            {/* Buttons */}
-            <div className="[&>div>button]:border-2 [&>div>button]:border-red-500 [&>div>button]:h-14 [&>div>button:not(:last-child)]:w-14 [&>div>button]:rounded-md [&>div>button]:m-2 text-xl font-bold p-3">
-                {/* Buttons: Row 0 */}
-                <div>
-                    <button
-                        onClick={() => {
-                            setScreen("0");
-                        }}
+        <div className="bg-[#D8D4BD] px-5 rounded-xl pb-5 border-4 border-t-0 border-b-0 border-[#fffee8ab]">
+            <div
+                className="border-[3px] border-[#383838] rounded-b-md bg-[#0E0E0E]"
+                id="calc_body"
+            >
+                <div className="bg-[#060606] p-5 m-5 border-[#383838] border-b-4 rounded-md">
+                    {/* Screen */}
+                    <div
+                        id="screen"
+                        className="h-14 rounded-md relative m-5 bg-[#060C0A] text-[#2FF5C7]"
                     >
-                        C
-                    </button>
-                    <button
-                        onClick={() => {
-                            if (screen !== "0") {
-                                currScreen = currScreen.slice(0, -1);
+                        {/* Screen Text */}
+                        <div
+                            className="bottom-1 right-2 absolute text-4xl font-bold"
+                            id="screen_text"
+                        >
+                            {screen}
+                        </div>
+                    </div>
+                </div>
+                {/* Buttons */}
+                <div
+                    className="[&>div>button]:border-[2px] [&>div>button]:h-14 [&>div>button:not(:last-child)]:w-14 [&>div>button]:rounded-md [&>div>button]:m-2 p-3"
+                    id="buttons"
+                >
+                    {/* Buttons: Row 0 */}
+                    <div>
+                        <button
+                            className="bg-[#DA7247] border-t-[#FBA57C] border-transparent text-[#25251D] text-lg"
+                            onClick={() => {
+                                setScreen("0");
+                            }}
+                        >
+                            C
+                        </button>
+                        <button
+                            className="bg-[#e7e6db] border-t-[#FAFBF2] border-transparent text-[#DA7247] text-base"
+                            onClick={() => {
+                                if (screen !== "0") {
+                                    currScreen = currScreen.slice(0, -1);
+                                    setScreen(currScreen);
+                                }
+                            }}
+                        >
+                            DEL
+                        </button>
+                        <button
+                            className="bg-[#5A9FAE] border-t-[#A5DFE9] border-transparent text-[#25251D] text-lg"
+                            onClick={() => {
+                                setOperandOne(screen);
+                                setOperation("mod");
+                                setScreen("0");
+                            }}
+                        >
+                            %
+                        </button>
+                        <button
+                            className="bg-[#5A9FAE] border-t-[#A5DFE9] w-14 border-transparent text-[#25251D] text-lg"
+                            onClick={() => {
+                                setOperandOne(screen);
+                                setOperation("divide");
+                                setScreen("0");
+                            }}
+                        >
+                            /
+                        </button>
+                    </div>
+                    {/* Buttons: Row 1 */}
+                    <div>
+                        <button
+                            className="bg-[#e7e6db] border-t-[#FAFBF2] border-transparent text-[#25251D] text-xl"
+                            onClick={() => {
+                                if (screen !== "0") {
+                                    currScreen = screen + "7";
+                                } else {
+                                    currScreen = "7";
+                                }
                                 setScreen(currScreen);
-                            }
-                        }}
-                    >
-                        DEL
-                    </button>
-                    <button
-                        onClick={() => {
-                            setOperandOne(screen);
-                            setOperation("mod");
-                            setScreen("0");
-                        }}
-                    >
-                        %
-                    </button>
-                    <button
-                        className="w-14"
-                        onClick={() => {
-                            setOperandOne(screen);
-                            setOperation("divide");
-                            setScreen("0");
-                        }}
-                    >
-                        /
-                    </button>
-                </div>
-                {/* Buttons: Row 1 */}
-                <div>
-                    <button
-                        onClick={() => {
-                            if (screen !== "0") {
-                                currScreen = screen + "7";
-                            } else {
-                                currScreen = "7";
-                            }
-                            setScreen(currScreen);
-                        }}
-                    >
-                        7
-                    </button>
-                    <button
-                        onClick={() => {
-                            if (screen !== "0") {
-                                currScreen = screen + "8";
-                            } else {
-                                currScreen = "8";
-                            }
-                            setScreen(currScreen);
-                        }}
-                    >
-                        8
-                    </button>
-                    <button
-                        onClick={() => {
-                            if (screen !== "0") {
-                                currScreen = screen + "9";
-                            } else {
-                                currScreen = "9";
-                            }
-                            setScreen(currScreen);
-                        }}
-                    >
-                        9
-                    </button>
-                    <button
-                        className="w-14"
-                        onClick={() => {
-                            setOperandOne(screen);
-                            setOperation("multiply");
-                            setScreen("0");
-                        }}
-                    >
-                        *
-                    </button>
-                </div>
-                {/* Buttons: Row 2 */}
-                <div>
-                    <button
-                        onClick={() => {
-                            if (screen !== "0") {
-                                currScreen = screen + "4";
-                            } else {
-                                currScreen = "4";
-                            }
-                            setScreen(currScreen);
-                        }}
-                    >
-                        4
-                    </button>
-                    <button
-                        onClick={() => {
-                            if (screen !== "0") {
-                                currScreen = screen + "5";
-                            } else {
-                                currScreen = "5";
-                            }
-                            setScreen(currScreen);
-                        }}
-                    >
-                        5
-                    </button>
-                    <button
-                        onClick={() => {
-                            if (screen !== "0") {
-                                currScreen = screen + "6";
-                            } else {
-                                currScreen = "6";
-                            }
-                            setScreen(currScreen);
-                        }}
-                    >
-                        6
-                    </button>
-                    <button
-                        className="w-14"
-                        onClick={() => {
-                            setOperandOne(screen);
-                            setOperation("subtract");
-                            setScreen("0");
-                        }}
-                    >
-                        -
-                    </button>
-                </div>
-                {/* Buttons: Row 3 */}
-                <div>
-                    <button
-                        onClick={() => {
-                            if (screen !== "0") {
-                                currScreen = screen + "1";
-                            } else {
-                                currScreen = "1";
-                            }
-                            setScreen(currScreen);
-                        }}
-                    >
-                        1
-                    </button>
-                    <button
-                        onClick={() => {
-                            if (screen !== "0") {
-                                currScreen = screen + "2";
-                            } else {
-                                currScreen = "2";
-                            }
-                            setScreen(currScreen);
-                        }}
-                    >
-                        2
-                    </button>
-                    <button
-                        onClick={() => {
-                            if (screen !== "0") {
-                                currScreen = screen + "3";
-                            } else {
-                                currScreen = "3";
-                            }
-                            setScreen(currScreen);
-                        }}
-                    >
-                        3
-                    </button>
-                    <button
-                        className="w-14"
-                        onClick={() => {
-                            setOperandOne(screen);
-                            setOperation("addition");
-                            setScreen("0");
-                        }}
-                    >
-                        +
-                    </button>
-                </div>
-                {/* Buttons: Row 4 */}
-                <div>
-                    <button
-                        onClick={() => {
-                            if (!screen.includes(".")) {
-                                currScreen = screen + ".";
+                            }}
+                        >
+                            7
+                        </button>
+                        <button
+                            className="bg-[#e7e6db] border-t-[#FAFBF2] border-transparent text-[#25251D] text-xl"
+                            onClick={() => {
+                                if (screen !== "0") {
+                                    currScreen = screen + "8";
+                                } else {
+                                    currScreen = "8";
+                                }
                                 setScreen(currScreen);
-                            }
-                        }}
-                    >
-                        .
-                    </button>
-                    <button
-                        onClick={() => {
-                            if (screen !== "0") {
-                                currScreen = screen + "0";
+                            }}
+                        >
+                            8
+                        </button>
+                        <button
+                            className="bg-[#e7e6db] border-t-[#FAFBF2] border-transparent text-[#25251D] text-xl"
+                            onClick={() => {
+                                if (screen !== "0") {
+                                    currScreen = screen + "9";
+                                } else {
+                                    currScreen = "9";
+                                }
                                 setScreen(currScreen);
-                            }
-                        }}
-                    >
-                        0
-                    </button>
-                    <button
-                        className="w-[128px]"
-                        onClick={() => {
-                            if (operation) {
-                                if (operation === "addition") {
-                                    console.log("op1", operandOne);
-                                    console.log("op2", screen);
-                                    let result = addition(operandOne, screen);
-                                    setScreen(result.toString());
+                            }}
+                        >
+                            9
+                        </button>
+                        <button
+                            className="bg-[#5A9FAE] border-t-[#A5DFE9] border-transparent text-[#25251D] w-14 text-xl"
+                            onClick={() => {
+                                setOperandOne(screen);
+                                setOperation("multiply");
+                                setScreen("0");
+                            }}
+                        >
+                            x
+                        </button>
+                    </div>
+                    {/* Buttons: Row 2 */}
+                    <div>
+                        <button
+                            className="bg-[#e7e6db] border-t-[#FAFBF2] border-transparent text-[#25251D] text-xl"
+                            onClick={() => {
+                                if (screen !== "0") {
+                                    currScreen = screen + "4";
+                                } else {
+                                    currScreen = "4";
                                 }
-                                if (operation === "multiply") {
-                                    console.log("op1", operandOne);
-                                    console.log("op2", screen);
-                                    let result = multiply(operandOne, screen);
-                                    setScreen(result.toString());
+                                setScreen(currScreen);
+                            }}
+                        >
+                            4
+                        </button>
+                        <button
+                            className="bg-[#e7e6db] border-t-[#FAFBF2] border-transparent text-[#25251D] text-xl"
+                            onClick={() => {
+                                if (screen !== "0") {
+                                    currScreen = screen + "5";
+                                } else {
+                                    currScreen = "5";
                                 }
-                                if (operation === "subtract") {
-                                    console.log("op1", operandOne);
-                                    console.log("op2", screen);
-                                    let result = subtract(operandOne, screen);
-                                    setScreen(result.toString());
+                                setScreen(currScreen);
+                            }}
+                        >
+                            5
+                        </button>
+                        <button
+                            className="bg-[#e7e6db] border-t-[#FAFBF2] border-transparent text-[#25251D] text-xl"
+                            onClick={() => {
+                                if (screen !== "0") {
+                                    currScreen = screen + "6";
+                                } else {
+                                    currScreen = "6";
                                 }
-                                if (operation === "divide") {
-                                    console.log("op1", operandOne);
-                                    console.log("op2", screen);
-                                    let result = divide(operandOne, screen);
-                                    setScreen(result.toString());
+                                setScreen(currScreen);
+                            }}
+                        >
+                            6
+                        </button>
+                        <button
+                            className="bg-[#5A9FAE] border-t-[#A5DFE9] border-transparent text-[#25251D] w-14 text-xl"
+                            onClick={() => {
+                                setOperandOne(screen);
+                                setOperation("subtract");
+                                setScreen("0");
+                            }}
+                        >
+                            -
+                        </button>
+                    </div>
+                    {/* Buttons: Row 3 */}
+                    <div>
+                        <button
+                            className="bg-[#e7e6db] border-t-[#FAFBF2] border-transparent text-[#25251D] text-xl"
+                            onClick={() => {
+                                if (screen !== "0") {
+                                    currScreen = screen + "1";
+                                } else {
+                                    currScreen = "1";
                                 }
-                                if (operation === "mod") {
-                                    console.log("op1", operandOne);
-                                    console.log("op2", screen);
-                                    let result = mod(operandOne, screen);
-                                    setScreen(result.toString());
+                                setScreen(currScreen);
+                            }}
+                        >
+                            1
+                        </button>
+                        <button
+                            className="bg-[#e7e6db] border-t-[#FAFBF2] border-transparent text-[#25251D] text-xl"
+                            onClick={() => {
+                                if (screen !== "0") {
+                                    currScreen = screen + "2";
+                                } else {
+                                    currScreen = "2";
                                 }
-                            }
-                        }}
-                    >
-                        =
-                    </button>
+                                setScreen(currScreen);
+                            }}
+                        >
+                            2
+                        </button>
+                        <button
+                            className="bg-[#e7e6db] border-t-[#FAFBF2] border-transparent text-[#25251D] text-xl"
+                            onClick={() => {
+                                if (screen !== "0") {
+                                    currScreen = screen + "3";
+                                } else {
+                                    currScreen = "3";
+                                }
+                                setScreen(currScreen);
+                            }}
+                        >
+                            3
+                        </button>
+                        <button
+                            className="bg-[#5A9FAE] border-t-[#A5DFE9] border-transparent text-[#25251D] w-14 text-xl"
+                            onClick={() => {
+                                setOperandOne(screen);
+                                setOperation("addition");
+                                setScreen("0");
+                            }}
+                        >
+                            +
+                        </button>
+                    </div>
+                    {/* Buttons: Row 4 */}
+                    <div>
+                        <button
+                            className="bg-[#e7e6db] border-t-[#FAFBF2] border-transparent text-[#25251D] text-xl"
+                            onClick={() => {
+                                if (!screen.includes(".")) {
+                                    currScreen = screen + ".";
+                                    setScreen(currScreen);
+                                }
+                            }}
+                        >
+                            .
+                        </button>
+                        <button
+                            className="bg-[#e7e6db] border-t-[#FAFBF2] border-transparent text-[#25251D] text-xl"
+                            onClick={() => {
+                                if (screen !== "0") {
+                                    currScreen = screen + "0";
+                                    setScreen(currScreen);
+                                }
+                            }}
+                        >
+                            0
+                        </button>
+                        <button
+                            className="w-[128px] bg-[#5A9FAE] border-t-[#A5DFE9] border-transparent text-[#25251D] text-lg"
+                            onClick={() => {
+                                if (operation) {
+                                    if (operation === "addition") {
+                                        console.log("op1", operandOne);
+                                        console.log("op2", screen);
+                                        let result = addition(
+                                            operandOne,
+                                            screen
+                                        );
+                                        setScreen(result.toString());
+                                    }
+                                    if (operation === "multiply") {
+                                        console.log("op1", operandOne);
+                                        console.log("op2", screen);
+                                        let result = multiply(
+                                            operandOne,
+                                            screen
+                                        );
+                                        setScreen(result.toString());
+                                    }
+                                    if (operation === "subtract") {
+                                        console.log("op1", operandOne);
+                                        console.log("op2", screen);
+                                        let result = subtract(
+                                            operandOne,
+                                            screen
+                                        );
+                                        setScreen(result.toString());
+                                    }
+                                    if (operation === "divide") {
+                                        console.log("op1", operandOne);
+                                        console.log("op2", screen);
+                                        let result = divide(operandOne, screen);
+                                        setScreen(result.toString());
+                                    }
+                                    if (operation === "mod") {
+                                        let result = mod(operandOne, screen);
+                                        setScreen(result.toString());
+                                    }
+                                }
+                            }}
+                        >
+                            =
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
