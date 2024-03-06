@@ -19,7 +19,6 @@ const Calculator = () => {
 
     function subtract(opOne, opTwo) {
         const result = parseFloat(opOne) - parseFloat(opTwo);
-        console.log(parseFloat(opOne), parseFloat(opTwo));
         return result;
     }
 
@@ -99,7 +98,7 @@ const Calculator = () => {
                 className="border-[3px] border-[#383838] rounded-b-md bg-[#0E0E0E]"
                 id="calc_body"
             >
-                <div className="bg-[#060606] p-5 m-5 border-[#383838] border-b-4 rounded-md">
+                <div className="bg-[#060606] p-5 m-5 border-b-[#252525] border-t-[#111111] border-y-4 rounded-md">
                     {/* Screen */}
                     <div
                         id="screen"
@@ -122,7 +121,7 @@ const Calculator = () => {
                     {/* Buttons: Row 0 */}
                     <div>
                         <button
-                            className="bg-[#DA7247] border-t-[#FBA57C] border-transparent text-[#25251D] text-lg w-10 h-10 sm:h-14 sm:w-14"
+                            className="bg-[#DA7247] border-t-[#FBA57C] border-b-[#a75837] border-transparent text-[#25251D] text-lg w-10 h-10 sm:h-14 sm:w-14"
                             onClick={() => {
                                 setScreen("0");
                                 setOperandOne("");
@@ -137,7 +136,7 @@ const Calculator = () => {
                             C
                         </button>
                         <button
-                            className="bg-[#e7e6db] border-t-[#FAFBF2] border-transparent text-[#DA7247] text-base w-10 h-10 sm:h-14 sm:w-14"
+                            className="bg-[#e7e6db] border-t-[#FAFBF2] border-b-[#bdbcb4] border-transparent text-[#DA7247] text-base w-10 h-10 sm:h-14 sm:w-14"
                             onClick={() => {
                                 if (operandTwo === "" && operation === "") {
                                     if (screen !== "0") {
@@ -186,7 +185,7 @@ const Calculator = () => {
                             DEL
                         </button>
                         <button
-                            className="bg-[#5A9FAE] border-t-[#A5DFE9] border-transparent text-[#25251D] text-lg w-10 h-10 sm:h-14 sm:w-14"
+                            className="bg-[#5A9FAE] border-t-[#A5DFE9] border-b-[#427480] border-transparent text-[#25251D] text-lg w-10 h-10 sm:h-14 sm:w-14"
                             onClick={() => {
                                 const operationButton = "mod";
                                 handleOperationButtonPress(operationButton);
@@ -195,7 +194,7 @@ const Calculator = () => {
                             %
                         </button>
                         <button
-                            className="bg-[#5A9FAE] border-t-[#A5DFE9] border-transparent text-[#25251D] text-lg w-10 h-10 sm:h-14 sm:w-14"
+                            className="bg-[#5A9FAE] border-t-[#A5DFE9] border-b-[#427480] border-transparent text-[#25251D] text-lg w-10 h-10 sm:h-14 sm:w-14"
                             onClick={() => {
                                 const operationButton = "divide";
                                 handleOperationButtonPress(operationButton);
@@ -207,7 +206,7 @@ const Calculator = () => {
                     {/* Buttons: Row 1 */}
                     <div>
                         <button
-                            className="bg-[#e7e6db] border-t-[#FAFBF2] border-transparent text-[#25251D] text-xl w-10 h-10 sm:h-14 sm:w-14"
+                            className="bg-[#e7e6db] border-t-[#FAFBF2] border-b-[#bdbcb4] border-transparent text-[#25251D] text-xl w-10 h-10 sm:h-14 sm:w-14"
                             onClick={() => {
                                 const buttonValue = "7";
                                 handleNumberButtonPress(buttonValue);
@@ -216,7 +215,7 @@ const Calculator = () => {
                             7
                         </button>
                         <button
-                            className="bg-[#e7e6db] border-t-[#FAFBF2] border-transparent text-[#25251D] text-xl w-10 h-10 sm:h-14 sm:w-14"
+                            className="bg-[#e7e6db] border-t-[#FAFBF2] border-b-[#bdbcb4] border-transparent text-[#25251D] text-xl w-10 h-10 sm:h-14 sm:w-14"
                             onClick={() => {
                                 const buttonValue = "8";
                                 handleNumberButtonPress(buttonValue);
@@ -225,7 +224,7 @@ const Calculator = () => {
                             8
                         </button>
                         <button
-                            className="bg-[#e7e6db] border-t-[#FAFBF2] border-transparent text-[#25251D] text-xl w-10 h-10 sm:h-14 sm:w-14"
+                            className="bg-[#e7e6db] border-t-[#FAFBF2] border-b-[#bdbcb4] border-transparent text-[#25251D] text-xl w-10 h-10 sm:h-14 sm:w-14"
                             onClick={() => {
                                 const buttonValue = "9";
                                 handleNumberButtonPress(buttonValue);
@@ -234,7 +233,7 @@ const Calculator = () => {
                             9
                         </button>
                         <button
-                            className="bg-[#5A9FAE] border-t-[#A5DFE9] border-transparent text-[#25251D] text-xl w-10 h-10 sm:h-14 sm:w-14"
+                            className="bg-[#5A9FAE] border-t-[#A5DFE9] border-b-[#427480] border-transparent text-[#25251D] text-xl w-10 h-10 sm:h-14 sm:w-14"
                             onClick={() => {
                                 const operationButton = "multiply";
                                 handleOperationButtonPress(operationButton);
@@ -246,7 +245,7 @@ const Calculator = () => {
                     {/* Buttons: Row 2 */}
                     <div>
                         <button
-                            className="bg-[#e7e6db] border-t-[#FAFBF2] border-transparent text-[#25251D] text-xl w-10 h-10 sm:h-14 sm:w-14"
+                            className="bg-[#e7e6db] border-t-[#FAFBF2] border-b-[#bdbcb4] border-transparent text-[#25251D] text-xl w-10 h-10 sm:h-14 sm:w-14"
                             onClick={() => {
                                 const buttonValue = "4";
                                 handleNumberButtonPress(buttonValue);
@@ -255,7 +254,7 @@ const Calculator = () => {
                             4
                         </button>
                         <button
-                            className="bg-[#e7e6db] border-t-[#FAFBF2] border-transparent text-[#25251D] text-xl w-10 h-10 sm:h-14 sm:w-14"
+                            className="bg-[#e7e6db] border-t-[#FAFBF2] border-b-[#bdbcb4] border-transparent text-[#25251D] text-xl w-10 h-10 sm:h-14 sm:w-14"
                             onClick={() => {
                                 const buttonValue = "5";
                                 handleNumberButtonPress(buttonValue);
@@ -264,7 +263,7 @@ const Calculator = () => {
                             5
                         </button>
                         <button
-                            className="bg-[#e7e6db] border-t-[#FAFBF2] border-transparent text-[#25251D] text-xl w-10 h-10 sm:h-14 sm:w-14"
+                            className="bg-[#e7e6db] border-t-[#FAFBF2] border-b-[#bdbcb4] border-transparent text-[#25251D] text-xl w-10 h-10 sm:h-14 sm:w-14"
                             onClick={() => {
                                 const buttonValue = "6";
                                 handleNumberButtonPress(buttonValue);
@@ -273,7 +272,7 @@ const Calculator = () => {
                             6
                         </button>
                         <button
-                            className="bg-[#5A9FAE] border-t-[#A5DFE9] border-transparent text-[#25251D] text-xl  w-10 h-10 sm:h-14 sm:w-14"
+                            className="bg-[#5A9FAE] border-t-[#A5DFE9] border-b-[#427480] border-transparent text-[#25251D] text-xl  w-10 h-10 sm:h-14 sm:w-14"
                             onClick={() => {
                                 const operationButton = "subtract";
                                 handleOperationButtonPress(operationButton);
@@ -285,7 +284,7 @@ const Calculator = () => {
                     {/* Buttons: Row 3 */}
                     <div>
                         <button
-                            className="bg-[#e7e6db] border-t-[#FAFBF2] border-transparent text-[#25251D] text-xl  w-10 h-10 sm:h-14 sm:w-14"
+                            className="bg-[#e7e6db] border-t-[#FAFBF2] border-b-[#bdbcb4] border-transparent text-[#25251D] text-xl  w-10 h-10 sm:h-14 sm:w-14"
                             onClick={() => {
                                 const buttonValue = "1";
                                 handleNumberButtonPress(buttonValue);
@@ -294,7 +293,7 @@ const Calculator = () => {
                             1
                         </button>
                         <button
-                            className="bg-[#e7e6db] border-t-[#FAFBF2] border-transparent text-[#25251D] text-xl  w-10 h-10 sm:h-14 sm:w-14"
+                            className="bg-[#e7e6db] border-t-[#FAFBF2] border-b-[#bdbcb4] border-transparent text-[#25251D] text-xl  w-10 h-10 sm:h-14 sm:w-14"
                             onClick={() => {
                                 const buttonValue = "2";
                                 handleNumberButtonPress(buttonValue);
@@ -303,7 +302,7 @@ const Calculator = () => {
                             2
                         </button>
                         <button
-                            className="bg-[#e7e6db] border-t-[#FAFBF2] border-transparent text-[#25251D] text-xl  w-10 h-10 sm:h-14 sm:w-14"
+                            className="bg-[#e7e6db] border-t-[#FAFBF2] border-b-[#bdbcb4] border-transparent text-[#25251D] text-xl  w-10 h-10 sm:h-14 sm:w-14"
                             onClick={() => {
                                 const buttonValue = "3";
                                 handleNumberButtonPress(buttonValue);
@@ -312,7 +311,7 @@ const Calculator = () => {
                             3
                         </button>
                         <button
-                            className="bg-[#5A9FAE] border-t-[#A5DFE9] border-transparent text-[#25251D] text-xl  w-10 h-10 sm:h-14 sm:w-14"
+                            className="bg-[#5A9FAE] border-t-[#A5DFE9] border-b-[#427480] border-transparent text-[#25251D] text-xl  w-10 h-10 sm:h-14 sm:w-14"
                             onClick={() => {
                                 const operationButton = "addition";
                                 handleOperationButtonPress(operationButton);
@@ -324,18 +323,27 @@ const Calculator = () => {
                     {/* Buttons: Row 4 */}
                     <div>
                         <button
-                            className="bg-[#e7e6db] border-t-[#FAFBF2] border-transparent text-[#25251D] text-xl  w-10 h-10 sm:h-14 sm:w-14"
+                            className="bg-[#e7e6db] border-t-[#FAFBF2] border-b-[#bdbcb4] border-transparent text-[#25251D] text-xl  w-10 h-10 sm:h-14 sm:w-14"
                             onClick={() => {
                                 // NEEDS FIXING
-                                if (!screen.includes(".")) {
+                                if (operandTwo === "" && operation === "") {
                                     setScreen(screen + ".");
+                                    setOperandOne(screen + ".");
+                                    console.log("op1 = ", screen + ".");
+                                } else if (
+                                    operandOne !== "" &&
+                                    operation !== ""
+                                ) {
+                                    setScreen(screen + ".");
+                                    setOperandTwo(screen + ".");
+                                    console.log("op2 = ", screen + ".");
                                 }
                             }}
                         >
                             .
                         </button>
                         <button
-                            className="bg-[#e7e6db] border-t-[#FAFBF2] border-transparent text-[#25251D] text-xl  w-10 h-10 sm:h-14 sm:w-14"
+                            className="bg-[#e7e6db] border-t-[#FAFBF2] border-b-[#bdbcb4] border-transparent text-[#25251D] text-xl  w-10 h-10 sm:h-14 sm:w-14"
                             onClick={() => {
                                 const buttonValue = "0";
                                 handleNumberButtonPress(buttonValue);
@@ -344,10 +352,9 @@ const Calculator = () => {
                             0
                         </button>
                         <button
-                            className="bg-[#5A9FAE] border-t-[#A5DFE9] border-transparent text-[#25251D] text-lg w-[96px] h-10 sm:h-14 sm:w-[128px]"
+                            className="bg-[#5A9FAE] border-t-[#A5DFE9] border-b-[#427480] border-transparent text-[#25251D] text-lg w-[96px] h-10 sm:h-14 sm:w-[128px]"
                             onClick={() => {
                                 if (operandOne !== "" && operandTwo != "") {
-                                    console.log("got through");
                                     let result = executeOperation();
                                     setOperandOne(result);
                                     setOperandTwo("");

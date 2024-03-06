@@ -10,8 +10,8 @@ export default {
                 buttonPress: {
                     "0%": { transform: "scale(1)", filter: "brightness(1)" },
                     "50%": {
-                        transform: "scale(0.9)",
-                        filter: "brightness(0.5)",
+                        transform: "scale(0.95)",
+                        filter: "brightness(0.9)",
                     },
                     "100%": { transform: "scale(1)", filter: "brightness(1)" },
                 },
