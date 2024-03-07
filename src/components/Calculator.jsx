@@ -7,51 +7,40 @@ const Calculator = () => {
     const [operandTwo, setOperandTwo] = useState("");
     const [operation, setOperation] = useState("");
 
-    function addition(opOne, opTwo) {
-        const result = parseFloat(opOne) + parseFloat(opTwo);
-        return result;
-    }
+    // If number is large for screen, convert to scientific notation
+    if (screen.length > 6) {
+        let exponentialScreenFloat = parseFloat(screen).toExponential();
+        let exponentialScreenString = exponentialScreenFloat.toString();
+        let firstThreeChars = exponentialScreenString.slice(0, 3);
+        let lastThreeChars = exponentialScreenString.slice(
+            exponentialScreenString.length - 3
+        );
+        let shortenedString = firstThreeChars + lastThreeChars;
+        console.log(shortenedString);
 
-    function multiply(opOne, opTwo) {
-        const result = parseFloat(opOne) * parseFloat(opTwo);
-        return result;
-    }
-
-    function subtract(opOne, opTwo) {
-        const result = parseFloat(opOne) - parseFloat(opTwo);
-        return result;
-    }
-
-    function divide(opOne, opTwo) {
-        const result = parseFloat(opOne) / parseFloat(opTwo);
-        return result;
-    }
-
-    function mod(opOne, opTwo) {
-        const result = parseFloat(opOne) % parseFloat(opTwo);
-        return result;
+        setScreen(shortenedString);
     }
 
     function executeOperation() {
-        if (operation) {
-            if (operation === "addition") {
-                let result = addition(operandOne, operandTwo);
+        switch (operation) {
+            case "addition": {
+                let result = parseFloat(operandOne) + parseFloat(operandTwo);
                 return result.toString();
             }
-            if (operation === "multiply") {
-                let result = multiply(operandOne, operandTwo);
+            case "multiply": {
+                let result = parseFloat(operandOne) * parseFloat(operandTwo);
                 return result.toString();
             }
-            if (operation === "subtract") {
-                let result = subtract(operandOne, operandTwo);
+            case "subtract": {
+                let result = parseFloat(operandOne) - parseFloat(operandTwo);
                 return result.toString();
             }
-            if (operation === "divide") {
-                let result = divide(operandOne, operandTwo);
+            case "divide": {
+                let result = parseFloat(operandOne) / parseFloat(operandTwo);
                 return result.toString();
             }
-            if (operation === "mod") {
-                let result = mod(operandOne, operandTwo);
+            case "mod": {
+                let result = parseFloat(operandOne) % parseFloat(operandTwo);
                 return result.toString();
             }
         }
