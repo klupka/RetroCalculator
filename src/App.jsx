@@ -5,7 +5,7 @@ function App() {
     const [count, setCount] = useState(0);
 
     return (
-        <>
+        <div className="animate-load">
             <div className="my-10">
                 <div
                     id="heading"
@@ -20,7 +20,7 @@ function App() {
             <div className="flex justify-center gap-10">
                 <Calculator />
             </div>
-        </>
+        </div>
     );
 }
 

@@ -18,12 +18,12 @@ export default {
                 },
                 load: {
                     "0%": {
-                        transform: "translateX(-100px)",
+                        transform: "translateY(50px)",
 
-                        opacity: "0%",
+                        opacity: "100%",
                     },
                     "100%": {
-                        transform: "translateX(0px)",
+                        transform: "translateY(0px)",
                         opacity: "100%",
                     },
                 },

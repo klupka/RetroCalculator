@@ -2,25 +2,42 @@ import React from "react";
 import { useState } from "react";
 
 const Calculator = () => {
+    // Text to display on calculator screen
     const [screen, setScreen] = useState("0");
+    // Define operand 1
     const [operandOne, setOperandOne] = useState("");
+    // Define operand 2
     const [operandTwo, setOperandTwo] = useState("");
+    // Define what operation to perform on operands
     const [operation, setOperation] = useState("");
 
     // If number is large for screen, convert to scientific notation
-    if (screen.length > 6) {
+    if (screen.length > 7) {
         let exponentialScreenFloat = parseFloat(screen).toExponential();
         let exponentialScreenString = exponentialScreenFloat.toString();
         let firstThreeChars = exponentialScreenString.slice(0, 3);
-        let lastThreeChars = exponentialScreenString.slice(
-            exponentialScreenString.length - 3
-        );
-        let shortenedString = firstThreeChars + lastThreeChars;
-        console.log(shortenedString);
-
-        setScreen(shortenedString);
+        let exponentVal = exponentialScreenString.slice(-3);
+        // If the power of the scientific notation is 100 or above, return error. It is too large to print to screen
+        if (!exponentVal.includes("+") && parseFloat(exponentVal) > 99) {
+            setScreen("error");
+            setOperandOne("");
+            setOperandTwo("");
+            setOperation("");
+            console.log("Cleared op1, op2, operation, and screen = 0");
+        }
+        // Power is below 3 digits long, okay to print to screen
+        else {
+            let splitChar = "e";
+            let index = exponentialScreenString.indexOf(splitChar);
+            if (index !== -1) {
+                let after = exponentialScreenString.substring(index); // Extract substring after the split character
+                let shortenedString = firstThreeChars + after;
+                setScreen(shortenedString);
+            }
+        }
     }
 
+    // Execute specified operation using two defined operands
     function executeOperation() {
         switch (operation) {
             case "addition": {
@@ -46,21 +63,27 @@ const Calculator = () => {
         }
     }
 
+    // Set/Update operands on numeric button presses, e.g. push 8 -> screen shows 8, operandOne = 8
     function handleNumberButtonPress(buttonValue) {
+        // If screen is anything but 0 AND no operation set
         if (screen !== "0" && operation === "") {
             setScreen(operandOne + buttonValue);
             setOperandOne(operandOne + buttonValue);
             console.log("op1 = ", operandOne + buttonValue);
-        } else if (screen === "0") {
+        }
+        // If screen is 0
+        else if (screen === "0") {
             setScreen(buttonValue);
             setOperandOne(buttonValue);
             console.log("op1 = ", buttonValue);
         }
+        // If an operation is set
         if (operation !== "") {
             setScreen(operandTwo + buttonValue);
             setOperandTwo(operandTwo + buttonValue);
             console.log("op2 = ", operandTwo + buttonValue);
         }
+        // If an operation is set and screen is 0
         if (operation !== "" && screen === "0") {
             setScreen(buttonValue);
             setOperandTwo(buttonValue);
@@ -68,14 +91,18 @@ const Calculator = () => {
         }
     }
 
+    // Define operation on button press, e.g. push x -> multiplication set
     function handleOperationButtonPress(operationButton) {
+        // If an operation, operandOne, and operationTwo is set
         if (operation !== "" && operandOne !== "" && operandTwo !== "") {
             let result = executeOperation();
             setOperandOne(result);
             setOperandTwo("");
             setScreen(result);
             setOperation(operationButton);
-        } else if (operation === "") {
+        }
+        // If no operation is set
+        else if (operation === "") {
             setOperation(operationButton);
         }
     }
@@ -84,18 +111,18 @@ const Calculator = () => {
         // Body
         <div
             id="calc_body"
-            className="bg-[#D8D4BD] px-5 rounded-xl pb-5 border-4 border-t-0 border-b-0 border-[#fffee8ab] animate-load"
+            className="bg-[#D8D4BD] px-5 rounded-xl pb-5 border-4 border-t-0 border-b-0 border-[#fffee8ab]"
         >
             <div className="border-[3px] border-[#383838] rounded-b-md bg-[#0E0E0E]">
-                <div className="bg-[#060606] p-5 m-5 border-b-[#252525] border-t-[#111111] border-y-4 rounded-md">
+                <div className="bg-[#060606] sm:p-5 m-5 border-b-[#252525] border-t-[#111111] border-y-4 rounded-md">
                     {/* Screen */}
                     <div
                         id="screen"
-                        className="h-14 rounded-md relative m-5 bg-[#060C0A] text-[#2FF5C7]"
+                        className="h-14 rounded-md relative my-5 bg-[#060C0A] text-[#2FF5C7]"
                     >
                         {/* Screen Text */}
                         <div
-                            className="bottom-1 right-2 absolute text-4xl font-bold"
+                            className="bottom-1 right-2 absolute sm:text-4xl text-3xl font-bold"
                             id="screen_text"
                         >
                             {screen}
@@ -314,7 +341,6 @@ const Calculator = () => {
                         <button
                             className="bg-[#e7e6db] border-t-[#FAFBF2] border-b-[#bdbcb4] border-transparent text-[#25251D] text-xl  w-10 h-10 sm:h-14 sm:w-14"
                             onClick={() => {
-                                // NEEDS FIXING
                                 if (operandTwo === "" && operation === "") {
                                     setScreen(screen + ".");
                                     setOperandOne(screen + ".");
