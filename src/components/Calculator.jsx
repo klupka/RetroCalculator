@@ -82,11 +82,11 @@ const Calculator = () => {
 
     return (
         // Body
-        <div className="bg-[#D8D4BD] px-5 rounded-xl pb-5 border-4 border-t-0 border-b-0 border-[#fffee8ab]">
-            <div
-                className="border-[3px] border-[#383838] rounded-b-md bg-[#0E0E0E]"
-                id="calc_body"
-            >
+        <div
+            id="calc_body"
+            className="bg-[#D8D4BD] px-5 rounded-xl pb-5 border-4 border-t-0 border-b-0 border-[#fffee8ab] animate-load"
+        >
+            <div className="border-[3px] border-[#383838] rounded-b-md bg-[#0E0E0E]">
                 <div className="bg-[#060606] p-5 m-5 border-b-[#252525] border-t-[#111111] border-y-4 rounded-md">
                     {/* Screen */}
                     <div

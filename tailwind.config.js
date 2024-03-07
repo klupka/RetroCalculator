@@ -5,6 +5,7 @@ export default {
         extend: {
             animation: {
                 buttonPress: "buttonPress 0.09s linear",
+                load: "load 0.5s ease-out",
             },
             keyframes: {
                 buttonPress: {
@@ -14,6 +15,17 @@ export default {
                         filter: "brightness(0.9)",
                     },
                     "100%": { transform: "scale(1)", filter: "brightness(1)" },
+                },
+                load: {
+                    "0%": {
+                        transform: "translateX(-100px)",
+
+                        opacity: "0%",
+                    },
+                    "100%": {
+                        transform: "translateX(0px)",
+                        opacity: "100%",
+                    },
                 },
             },
         },
