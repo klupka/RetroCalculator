@@ -27,7 +27,7 @@ html {
 
 #credit {
     font-family: Tommy;
-    color: rgb(109, 109, 109);
+    color: rgb(75, 75, 75);
 }
 
 #screen {
@@ -37,7 +37,7 @@ html {
 #screen_text {
     font-family: DSEG7Classic-BoldItalic;
     filter: drop-shadow(1px 2px 1px #000000ab);
-    text-shadow: #2ff5c788 0px 0 10px;
+    /* text-shadow: #2ff5c788 0px 0 10px; */
 }
 
 #buttons {
@@ -51,4 +51,12 @@ html {
 
 #calc_body {
     filter: drop-shadow(0px 5px 5px #000000d7);
+}
+
+.text-shadow-classic {
+    text-shadow: #2ff5c788 0px 0 10px;
+}
+
+.text-shadow-cherry {
+    text-shadow: #f53c2f88 0px 0 10px;
 }
