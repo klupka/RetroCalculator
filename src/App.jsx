@@ -2,10 +2,17 @@ import { useState, useEffect } from "react";
 import Calculator from "./components/Calculator";
 import "./index.css";
 
+import { LuCherry } from "react-icons/lu";
+import { LuGrape } from "react-icons/lu";
+import { FaCalculator } from "react-icons/fa";
+
 function App() {
-    const themes = ["classic", "cherry"];
+    const themes = ["classic", "cherry", "grape"];
+    const icons = [<FaCalculator />, <LuCherry />, <LuGrape />];
+    //const themes = ["grape"];
     const [themeIndex, setThemeIndex] = useState(0);
     const [theme, setTheme] = useState(themes[0]);
+    const [themeIcon, setThemeIcon] = useState();
 
     const handleNextTheme = () => {
         // Calculate the next index, wrapping around to 0 if it exceeds the length of the array
@@ -16,6 +23,10 @@ function App() {
     };
 
     const headingShadow = "heading-shadow-" + theme;
+
+    useEffect(() => {
+        setThemeIcon(icons[themeIndex]);
+    }, [themeIndex]);
 
     return (
         <div className={"animate-load" + " " + theme}>
@@ -28,15 +39,23 @@ function App() {
                         headingShadow
                     }
                 >
-                    Calculator
+                    CALCULATOR
                 </div>
             </div>
-            <div className="flex justify-center mb-5">
+            <div
+                id="heading"
+                className={
+                    "flex justify-center items-center mb-5 text-xl text-screenText gap-2" +
+                    " " +
+                    headingShadow
+                }
+            >
+                <div>THEME:</div>
                 <button
-                    className="bg-screenText p-1 rounded-md text-black"
+                    className="bg-iconBg p-2 rounded-full text-black text-base"
                     onClick={handleNextTheme}
                 >
-                    {theme}
+                    {themeIcon}
                 </button>
             </div>
             <div className="flex justify-center gap-10">

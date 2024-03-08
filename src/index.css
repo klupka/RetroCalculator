@@ -7,8 +7,8 @@
 }
 
 @font-face {
-    font-family: DSEG7Classic-BoldItalic;
-    src: url("src/resources/DSEG7Classic-BoldItalic.ttf");
+    font-family: DSEG14Classic-BoldItalic;
+    src: url("src/resources/DSEG14Classic-BoldItalic.ttf"); /*DSEG7Classic-BoldItalic */
 }
 
 @font-face {
@@ -24,7 +24,7 @@ html {
 }
 
 #heading {
-    font-family: DSEG7Classic-BoldItalic;
+    font-family: DSEG14Classic-BoldItalic;
     filter: drop-shadow(1px 2px 1px #000000ab);
 }
 
@@ -38,7 +38,7 @@ html {
 }
 
 #screen_text {
-    font-family: DSEG7Classic-BoldItalic;
+    font-family: DSEG14Classic-BoldItalic;
     filter: drop-shadow(1px 2px 1px #000000ab);
 }
 
@@ -60,7 +60,11 @@ html {
 }
 
 .heading-shadow-cherry {
-    text-shadow: #ffffff88 0px 0 10px;
+    text-shadow: #dc234b 0px 0 10px;
+}
+
+.heading-shadow-grape {
+    text-shadow: #890aff 0px 0 10px;
 }
 
 .text-shadow-classic {
@@ -69,4 +73,8 @@ html {
 
 .text-shadow-cherry {
     text-shadow: #dc234b 0px 0 15px;
+}
+
+.text-shadow-grape {
+    text-shadow: #890aff 0px 0 15px;
 }
