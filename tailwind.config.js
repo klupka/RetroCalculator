@@ -37,7 +37,7 @@ export default {
     plugins: [
         createThemes({
             classic: {
-                screenText: "#2FF5C7",
+                screenText: "#FFFFFF",
                 screenBg: "#060C0A",
                 outerScreenBg: "#060606",
                 numberBtnBg: "#e7e6db",
@@ -56,11 +56,11 @@ export default {
                 screenBg: "#160002",
                 outerScreenBg: "#080105",
                 numberBtnBg: "#575853",
-                operationBtnBg: "#9c2524",
+                operationBtnBg: "#dc234b",
                 clearBtnBg: "#C4C7B6",
                 clearBtnText: "#575853",
                 delBtnBg: "#C4C7B6",
-                delBtnText: "#9c2524", // Same as clearBtnBg
+                delBtnText: "#dc234b", // Same as clearBtnBg
                 innerShellBg: "#0E0E0E",
                 outerShellBg: "#0E0E0E",
                 btnText: "#E5E5E2",

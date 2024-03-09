@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-const Calculator = ({ theme }) => {
+const Calculator = ({ theme, setHistory, history }) => {
     // Text to display on calculator screen
     const [screen, setScreen] = useState("0");
     // Define operand 1
@@ -91,11 +91,51 @@ const Calculator = ({ theme }) => {
         }
     }
 
+    const updateHistory = (newOperationHistory) => {
+        switch (newOperationHistory[1]) {
+            case "addition": {
+                newOperationHistory[1] = "+";
+                break;
+            }
+            case "multiply": {
+                newOperationHistory[1] = "x";
+                break;
+            }
+            case "subtract": {
+                newOperationHistory[1] = "-";
+                break;
+            }
+            case "divide": {
+                newOperationHistory[1] = "/";
+                break;
+            }
+            case "mod": {
+                newOperationHistory[1] = "%";
+                break;
+            }
+        }
+        // Create a copy of the 2D array and push the new sub-array
+        const updatedHistory = [...history];
+        updatedHistory.push(newOperationHistory);
+        // Update the state with the new 2D array
+        setHistory(updatedHistory);
+    };
+
     // Define operation on button press, e.g. push x -> multiplication set
     function handleOperationButtonPress(operationButton) {
         // If an operation, operandOne, and operationTwo is set
         if (operation !== "" && operandOne !== "" && operandTwo !== "") {
             let result = executeOperation();
+
+            // Update history
+            let newOperationHistory = [
+                operandOne,
+                operation,
+                operandTwo,
+                result,
+            ];
+            updateHistory(newOperationHistory);
+
             setOperandOne(result);
             setOperandTwo("");
             setScreen(result);
@@ -118,7 +158,6 @@ const Calculator = ({ theme }) => {
             >
                 <div className="border-[3px] border-[#383838] rounded-b-md bg-innerShellBg">
                     <div className="bg-outerScreenBg sm:p-5 m-5 border-b-[#ffffff2a] border-t-[#ffffff15] border-y-4 rounded-md">
-                        {/* Screen, text-[#2FF5C7]*/}
                         <div
                             id="screen"
                             className="h-14 rounded-md relative my-5 bg-screenBg text-screenText"
@@ -385,6 +424,16 @@ const Calculator = ({ theme }) => {
                                 onClick={() => {
                                     if (operandOne !== "" && operandTwo != "") {
                                         let result = executeOperation();
+
+                                        // Update history
+                                        let newOperationHistory = [
+                                            operandOne,
+                                            operation,
+                                            operandTwo,
+                                            result,
+                                        ];
+                                        updateHistory(newOperationHistory);
+
                                         setOperandOne(result);
                                         setOperandTwo("");
                                         setScreen(result);

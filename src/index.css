@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 * {
-    @apply transition-colors duration-200;
+    @apply transition-colors duration-300;
 }
 
 @font-face {
@@ -42,6 +42,20 @@ html {
     filter: drop-shadow(1px 2px 1px #000000ab);
 }
 
+#history-screen {
+    box-shadow: inset 0px 0px 10px 5px rgba(0, 0, 0, 0.61);
+}
+
+#history {
+    font-family: DSEG14Classic-BoldItalic;
+    filter: drop-shadow(1px 2px 1px #000000ab);
+}
+
+#clear-history-btn {
+    font-family: Tommy;
+    filter: drop-shadow(0px 5px 6px #000000a4);
+}
+
 #buttons {
     font-family: Tommy;
     filter: drop-shadow(0px 5px 6px #000000a4);
@@ -56,7 +70,19 @@ html {
 }
 
 .heading-shadow-classic {
-    text-shadow: #2ff5c788 0px 0 10px;
+    text-shadow: #2ff5c7 0px 0 10px;
+}
+
+.icon-drop-classic {
+    filter: drop-shadow(0 0 0.3rem #2ff5c7);
+}
+
+.icon-drop-cherry {
+    filter: drop-shadow(0 0 0.3rem #dc234b);
+}
+
+.icon-drop-grape {
+    filter: drop-shadow(0 0 0.3rem #890aff);
 }
 
 .heading-shadow-cherry {
