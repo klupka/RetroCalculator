@@ -398,18 +398,43 @@ const Calculator = ({ theme, setHistory, history }) => {
                             <button
                                 className="bg-numberBtnBg border-t-[#ffffff4d] border-b-[#00000034] border-transparent text-btnText text-xl  w-10 h-10 sm:h-14 sm:w-14"
                                 onClick={() => {
-                                    // NEEDS FIXING. WHEN ENTERING OP2 IT APPENDS A . TO OP1 RATHER THAN REMOVING OP1 FROM SCREEN AND STARTING EMPTY WITH OP2
-                                    if (operandTwo === "" && operation === "") {
-                                        setScreen(screen + ".");
-                                        setOperandOne(screen + ".");
-                                        console.log("op1 = ", screen + ".");
-                                    } else if (
-                                        operandOne !== "" &&
-                                        operation !== ""
+                                    // If operandOne AND operandTwo are empty AND operandOne does not include a period
+                                    if (
+                                        operandTwo === "" &&
+                                        operation === "" &&
+                                        !operandOne.includes(".")
                                     ) {
-                                        setScreen(screen + ".");
-                                        setOperandTwo(screen + ".");
-                                        console.log("op2 = ", screen + ".");
+                                        // If operandOne is empty, then display on screen "0."
+                                        if (operandOne === "") {
+                                            setScreen("0" + ".");
+                                            setOperandOne("0" + ".");
+                                            console.log("op1 = ", "0" + ".");
+                                        }
+                                        // If operandOne is not empty, then append "." onto existing screen value
+                                        else if (operandOne !== "") {
+                                            setScreen(screen + ".");
+                                            setOperandOne(screen + ".");
+                                            console.log("op1 = ", screen + ".");
+                                        }
+                                    }
+                                    // If operandOne AND operation are not empty AND operandTwo does not include a period
+                                    if (
+                                        operandOne !== "" &&
+                                        operation !== "" &&
+                                        !operandTwo.includes(".")
+                                    ) {
+                                        // If operandTwo is empty, then display on screen "0."
+                                        if (operandTwo === "") {
+                                            setScreen("0" + ".");
+                                            setOperandTwo("0" + ".");
+                                            console.log("op2 = ", "0" + ".");
+                                        }
+                                        // If operandTwo is not empty, then append "." onto existing screen value
+                                        else if (operandTwo !== "") {
+                                            setScreen(screen + ".");
+                                            setOperandTwo(screen + ".");
+                                            console.log("op2 = ", screen + ".");
+                                        }
                                     }
                                 }}
                             >
@@ -429,7 +454,7 @@ const Calculator = ({ theme, setHistory, history }) => {
                                 onClick={() => {
                                     if (
                                         operandOne !== "" &&
-                                        operandTwo != "" &&
+                                        operandTwo !== "" &&
                                         repeatOperation.length === 0
                                     ) {
                                         let result = executeOperation(
@@ -455,7 +480,7 @@ const Calculator = ({ theme, setHistory, history }) => {
                                             operation,
                                             operandTwo,
                                         ]);
-                                    } else {
+                                    } else if (repeatOperation.length !== 0) {
                                         console.log(repeatOperation);
                                         let result = executeOperation(
                                             operandOne,
