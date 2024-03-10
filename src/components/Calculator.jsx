@@ -11,6 +11,8 @@ const Calculator = ({ theme, setHistory, history }) => {
     // Define what operation to perform on operands
     const [operation, setOperation] = useState("");
 
+    const [repeatOperation, setRepeatOperation] = useState([]);
+
     // If number is large for screen, convert to scientific notation
     if (screen.length > 7) {
         let exponentialScreenFloat = parseFloat(screen).toExponential();
@@ -38,7 +40,8 @@ const Calculator = ({ theme, setHistory, history }) => {
     }
 
     // Execute specified operation using two defined operands
-    function executeOperation() {
+    function executeOperation(operandOne, operandTwo, operation) {
+        console.log("executeOperation:", operandOne, operation, operandTwo);
         switch (operation) {
             case "addition": {
                 let result = parseFloat(operandOne) + parseFloat(operandTwo);
@@ -123,9 +126,10 @@ const Calculator = ({ theme, setHistory, history }) => {
 
     // Define operation on button press, e.g. push x -> multiplication set
     function handleOperationButtonPress(operationButton) {
+        setRepeatOperation([]);
         // If an operation, operandOne, and operationTwo is set
         if (operation !== "" && operandOne !== "" && operandTwo !== "") {
-            let result = executeOperation();
+            let result = executeOperation(operandOne, operandTwo, operation);
 
             // Update history
             let newOperationHistory = [
@@ -394,6 +398,7 @@ const Calculator = ({ theme, setHistory, history }) => {
                             <button
                                 className="bg-numberBtnBg border-t-[#ffffff4d] border-b-[#00000034] border-transparent text-btnText text-xl  w-10 h-10 sm:h-14 sm:w-14"
                                 onClick={() => {
+                                    // NEEDS FIXING. WHEN ENTERING OP2 IT APPENDS A . TO OP1 RATHER THAN REMOVING OP1 FROM SCREEN AND STARTING EMPTY WITH OP2
                                     if (operandTwo === "" && operation === "") {
                                         setScreen(screen + ".");
                                         setOperandOne(screen + ".");
@@ -422,8 +427,16 @@ const Calculator = ({ theme, setHistory, history }) => {
                             <button
                                 className="bg-operationBtnBg border-t-[#ffffff4d] border-b-[#00000034] border-transparent text-btnText text-lg w-[96px] h-10 sm:h-14 sm:w-[128px]"
                                 onClick={() => {
-                                    if (operandOne !== "" && operandTwo != "") {
-                                        let result = executeOperation();
+                                    if (
+                                        operandOne !== "" &&
+                                        operandTwo != "" &&
+                                        repeatOperation.length === 0
+                                    ) {
+                                        let result = executeOperation(
+                                            operandOne,
+                                            operandTwo,
+                                            operation
+                                        );
 
                                         // Update history
                                         let newOperationHistory = [
@@ -438,6 +451,35 @@ const Calculator = ({ theme, setHistory, history }) => {
                                         setOperandTwo("");
                                         setScreen(result);
                                         setOperation("");
+                                        setRepeatOperation([
+                                            operation,
+                                            operandTwo,
+                                        ]);
+                                    } else {
+                                        console.log(repeatOperation);
+                                        let result = executeOperation(
+                                            operandOne,
+                                            repeatOperation[1],
+                                            repeatOperation[0]
+                                        );
+                                        console.log("result:", result);
+                                        console.log("operandOne:", operandOne);
+                                        console.log(
+                                            "repeatOperation:",
+                                            repeatOperation[1]
+                                        );
+
+                                        // Update history
+                                        let newOperationHistory = [
+                                            operandOne,
+                                            repeatOperation[0],
+                                            repeatOperation[1],
+                                            result,
+                                        ];
+                                        updateHistory(newOperationHistory);
+
+                                        setOperandOne(result);
+                                        setScreen(result);
                                     }
                                 }}
                             >
