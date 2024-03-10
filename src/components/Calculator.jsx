@@ -194,6 +194,7 @@ const Calculator = ({ theme, setHistory, history }) => {
                                     setOperandOne("");
                                     setOperandTwo("");
                                     setOperation("");
+                                    setRepeatOperation([]);
 
                                     console.log(
                                         "Cleared op1, op2, operation, and screen = 0"
