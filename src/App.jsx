@@ -106,6 +106,7 @@ function App() {
                                 className="py-1 px-2 my-5 text-base text-clearBtnText bg-clearBtnBg rounded-md ease-in-out border-t-[#ffffff4d] border-b-[#00000034] border-transparent border-[2px] active:animate-buttonPress"
                                 onClick={() => {
                                     setHistory([]);
+                                    console.log("Cleared: history");
                                 }}
                             >
                                 CLEAR

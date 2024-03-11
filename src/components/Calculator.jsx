@@ -25,7 +25,10 @@ const Calculator = ({ theme, setHistory, history }) => {
             setOperandOne("");
             setOperandTwo("");
             setOperation("");
-            console.log("Cleared op1, op2, operation, and screen = 0");
+            setRepeatOperation([]);
+            console.log(
+                "Cleared: op1, op2, operation, screen, repeatOperation"
+            );
         }
         // Power is below 3 digits long, okay to print to screen
         else {
@@ -43,7 +46,7 @@ const Calculator = ({ theme, setHistory, history }) => {
     function removeTrailingZeros(numberString) {
         // Check if the string has a decimal point
         if (numberString.includes(".")) {
-            // Remove the decimal point and all zeros that follow
+            // Remove unnecessary trailing zeros. Also converts to whole number if possible. e.g., 2.50 -> 2.5 / 2.00 -> 2
             const regex = /\.?0+$/;
             return numberString.replace(regex, "");
         }
@@ -95,29 +98,37 @@ const Calculator = ({ theme, setHistory, history }) => {
 
     // Set/Update operands on numeric button presses, e.g. push 8 -> screen shows 8, operandOne = 8
     function handleNumberButtonPress(buttonValue) {
-        // If screen is anything but 0 AND no operation set
-        if (screen !== "0" && operation === "") {
-            setScreen(operandOne + buttonValue);
-            setOperandOne(operandOne + buttonValue);
-            console.log("op1 = ", operandOne + buttonValue);
-        }
-        // If screen is 0
-        else if (screen === "0") {
+        // (operandOne / no operation)
+        // If the screen is 0, and no operation, your next input with replace the 0
+        if (screen === "0" && operation === "") {
             setScreen(buttonValue);
             setOperandOne(buttonValue);
             console.log("op1 = ", buttonValue);
         }
-        // If an operation is set
-        if (operation !== "") {
-            setScreen(operandTwo + buttonValue);
-            setOperandTwo(operandTwo + buttonValue);
-            console.log("op2 = ", operandTwo + buttonValue);
+        // (operandOne / no operation)
+        // If the screen is not 0, and no operation, your next input will be appended.
+        else if (screen !== "0" && operation === "") {
+            setScreen(operandOne + buttonValue);
+            setOperandOne(operandOne + buttonValue);
+            console.log(
+                `op1 = ${operandOne + buttonValue} | appended ${buttonValue}`
+            );
         }
-        // If an operation is set and screen is 0
-        if (operation !== "" && screen === "0") {
+        // (operandTwo / operation set)
+        // If the screen is 0, and operation is set, your next input with replace the 0
+        if (screen === "0" && operation !== "") {
             setScreen(buttonValue);
             setOperandTwo(buttonValue);
             console.log("op2 = ", buttonValue);
+        }
+        // (operandTwo / operation set)
+        // If the screen is not 0, and operation is set, your next input will be appended.
+        else if (screen !== "" && operation !== "") {
+            setScreen(operandTwo + buttonValue);
+            setOperandTwo(operandTwo + buttonValue);
+            console.log(
+                `op2 = ${operandTwo + buttonValue} | appended ${buttonValue}`
+            );
         }
     }
 
@@ -153,7 +164,11 @@ const Calculator = ({ theme, setHistory, history }) => {
 
     // Define operation on button press, e.g. push x -> multiplication set
     function handleOperationButtonPress(operationButton) {
-        if (operandOne !== "") {
+        if (operandOne === "" && operation === "" && screen === "0") {
+            console.log("op1 = 0");
+            setOperandOne("0");
+            setOperation(operationButton);
+        } else if (operandOne !== "") {
             setRepeatOperation([]);
             // If an operation, operandOne, and operationTwo is set
             if (operation !== "" && operandOne !== "" && operandTwo !== "") {
@@ -230,7 +245,7 @@ const Calculator = ({ theme, setHistory, history }) => {
                                     setRepeatOperation([]);
 
                                     console.log(
-                                        "Cleared op1, op2, operation, and screen = 0"
+                                        "Cleared: op1, op2, operation, screen, repeatOperation"
                                     );
                                 }}
                             >
