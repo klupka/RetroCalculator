@@ -126,28 +126,34 @@ const Calculator = ({ theme, setHistory, history }) => {
 
     // Define operation on button press, e.g. push x -> multiplication set
     function handleOperationButtonPress(operationButton) {
-        setRepeatOperation([]);
-        // If an operation, operandOne, and operationTwo is set
-        if (operation !== "" && operandOne !== "" && operandTwo !== "") {
-            let result = executeOperation(operandOne, operandTwo, operation);
+        if (operandOne !== "") {
+            setRepeatOperation([]);
+            // If an operation, operandOne, and operationTwo is set
+            if (operation !== "" && operandOne !== "" && operandTwo !== "") {
+                let result = executeOperation(
+                    operandOne,
+                    operandTwo,
+                    operation
+                );
 
-            // Update history
-            let newOperationHistory = [
-                operandOne,
-                operation,
-                operandTwo,
-                result,
-            ];
-            updateHistory(newOperationHistory);
+                // Update history
+                let newOperationHistory = [
+                    operandOne,
+                    operation,
+                    operandTwo,
+                    result,
+                ];
+                updateHistory(newOperationHistory);
 
-            setOperandOne(result);
-            setOperandTwo("");
-            setScreen(result);
-            setOperation(operationButton);
-        }
-        // If no operation is set
-        else if (operation === "") {
-            setOperation(operationButton);
+                setOperandOne(result);
+                setOperandTwo("");
+                setScreen(result);
+                setOperation(operationButton);
+            }
+            // If no operation is set
+            else if (operation === "") {
+                setOperation(operationButton);
+            }
         }
     }
 
@@ -506,6 +512,14 @@ const Calculator = ({ theme, setHistory, history }) => {
 
                                         setOperandOne(result);
                                         setScreen(result);
+                                    }
+                                    if (
+                                        operandOne === "" ||
+                                        operandTwo === ""
+                                    ) {
+                                        console.log(
+                                            `One is missing: op1(${operandOne}) op2(${operandTwo})`
+                                        );
                                     }
                                 }}
                             >
