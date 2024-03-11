@@ -530,17 +530,15 @@ const Calculator = ({ theme, setHistory, history }) => {
                                             operandTwo,
                                         ]);
                                     } else if (repeatOperation.length !== 0) {
-                                        console.log(repeatOperation);
+                                        console.log(
+                                            "repeatOperation: op2 =",
+                                            repeatOperation[1]
+                                        );
+
                                         let result = executeOperation(
                                             operandOne,
                                             repeatOperation[1],
                                             repeatOperation[0]
-                                        );
-                                        console.log("result:", result);
-                                        console.log("operandOne:", operandOne);
-                                        console.log(
-                                            "repeatOperation:",
-                                            repeatOperation[1]
                                         );
 
                                         // Update history
@@ -554,14 +552,6 @@ const Calculator = ({ theme, setHistory, history }) => {
 
                                         setOperandOne(result);
                                         setScreen(result);
-                                    }
-                                    if (
-                                        operandOne === "" ||
-                                        operandTwo === ""
-                                    ) {
-                                        console.log(
-                                            `One is missing: op1(${operandOne}) op2(${operandTwo})`
-                                        );
                                     }
                                 }}
                             >

@@ -19,7 +19,7 @@ function App() {
         const nextIndex = (themeIndex + 1) % themes.length;
         setThemeIndex(nextIndex);
         setTheme(themes[nextIndex]);
-        console.log(`${nextIndex}: ${themes[nextIndex]}`);
+        console.log(`Changed theme to ${themes[nextIndex]}.`);
     };
 
     const headingShadow = "heading-shadow-" + theme;
