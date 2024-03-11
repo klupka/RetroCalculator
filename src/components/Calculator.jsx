@@ -39,28 +39,55 @@ const Calculator = ({ theme, setHistory, history }) => {
         }
     }
 
+    // Remove unnecessary zeros to maximize usable screen space
+    function removeTrailingZeros(numberString) {
+        // Check if the string has a decimal point
+        if (numberString.includes(".")) {
+            // Remove the decimal point and all zeros that follow
+            const regex = /\.?0+$/;
+            return numberString.replace(regex, "");
+        }
+        return numberString;
+    }
+
     // Execute specified operation using two defined operands
     function executeOperation(operandOne, operandTwo, operation) {
         console.log("executeOperation:", operandOne, operation, operandTwo);
+        // Handle each operation and format to 3 decimal places
         switch (operation) {
             case "addition": {
-                let result = parseFloat(operandOne) + parseFloat(operandTwo);
+                let result = (
+                    parseFloat(operandOne) + parseFloat(operandTwo)
+                ).toFixed(2);
+                result = removeTrailingZeros(result);
                 return result.toString();
             }
             case "multiply": {
-                let result = parseFloat(operandOne) * parseFloat(operandTwo);
+                let result = (
+                    parseFloat(operandOne) * parseFloat(operandTwo)
+                ).toFixed(2);
+                result = removeTrailingZeros(result);
                 return result.toString();
             }
             case "subtract": {
-                let result = parseFloat(operandOne) - parseFloat(operandTwo);
+                let result = (
+                    parseFloat(operandOne) - parseFloat(operandTwo)
+                ).toFixed(2);
+                result = removeTrailingZeros(result);
                 return result.toString();
             }
             case "divide": {
-                let result = parseFloat(operandOne) / parseFloat(operandTwo);
+                let result = (
+                    parseFloat(operandOne) / parseFloat(operandTwo)
+                ).toFixed(2);
+                result = removeTrailingZeros(result);
                 return result.toString();
             }
             case "mod": {
-                let result = parseFloat(operandOne) % parseFloat(operandTwo);
+                let result = (
+                    parseFloat(operandOne) % parseFloat(operandTwo)
+                ).toFixed(2);
+                result = removeTrailingZeros(result);
                 return result.toString();
             }
         }

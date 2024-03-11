@@ -81,7 +81,7 @@ function App() {
                 }
             >
                 <div className="mb-5">History</div>
-                <div className="w-[366px] bg-outerShellBg px-5 rounded-xl pb-5 border-4 border-t-0 border-b-0 border-[#ffffff31]">
+                <div className="sm:w-[366px] w-[302px] bg-outerShellBg px-5 rounded-xl pb-5 border-4 border-t-0 border-b-0 border-[#ffffff31]">
                     <div className="p-5 pb-0 bg-innerShellBg rounded-b-md border-[3px] border-[#383838]">
                         <div className="p-5 bg-outerScreenBg rounded-md">
                             <div
