@@ -169,6 +169,7 @@ const Calculator = ({ theme, setHistory, history }) => {
             setOperandOne("0");
             setOperation(operationButton);
         } else if (operandOne !== "") {
+            console.log("op1 not empty", operandOne);
             setRepeatOperation([]);
             // If an operation, operandOne, and operationTwo is set
             if (operation !== "" && operandOne !== "" && operandTwo !== "") {
@@ -193,17 +194,18 @@ const Calculator = ({ theme, setHistory, history }) => {
                 setOperation(operationButton);
             }
             // If no operation is set
-            else if (operation === "") {
+            // was: else if (operation === "") {
+            else {
                 setOperation(operationButton);
             }
         }
     }
 
-    const textShadow = "text-shadow-" + theme;
+    const textShadow = " text-shadow-" + theme;
 
     return (
         // Body
-        <div className={theme}>
+        <div className={theme + " z-10"}>
             <div
                 id="calc_body"
                 className="bg-outerShellBg px-5 rounded-xl pb-5 border-4 border-t-0 border-b-0 border-[#ffffff31]"
@@ -218,7 +220,6 @@ const Calculator = ({ theme, setHistory, history }) => {
                             <div
                                 className={
                                     "bottom-1 right-2 absolute sm:text-4xl text-3xl font-bold" +
-                                    " " +
                                     textShadow
                                 }
                                 id="screen_text"

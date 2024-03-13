@@ -7,6 +7,9 @@ import { LuCherry } from "react-icons/lu";
 import { LuGrape } from "react-icons/lu";
 import { FaCalculator } from "react-icons/fa";
 
+import { GrFormViewHide } from "react-icons/gr";
+import { GrFormView } from "react-icons/gr";
+
 function App() {
     const themes = ["classic", "cherry", "grape"];
     const icons = [<FaCalculator />, <LuCherry />, <LuGrape />];
@@ -24,8 +27,8 @@ function App() {
         console.log(`Changed theme to ${themes[nextIndex]}.`);
     };
 
-    const headingShadow = "heading-shadow-" + theme;
-    const iconDrop = "icon-drop-" + theme;
+    const headingShadow = " heading-shadow-" + theme;
+    const iconDrop = " icon-drop-" + theme;
 
     useEffect(() => {
         setThemeIcon(icons[themeIndex]);
@@ -42,55 +45,64 @@ function App() {
                         headingShadow
                     }
                 >
-                    CALCULATOR
+                    {/* CALCULATOR */}
                 </div>
             </div>
-            <div className="flex justify-center gap-10">
-                <div
-                    id="heading"
-                    className={
-                        "flex justify-center items-center mb-5 text-xl text-screenText gap-2" +
-                        " " +
-                        headingShadow
-                    }
-                >
-                    <div>THEME:</div>
-                    <button
+            <div className="flex justify-center p-0">
+                <div className="flex justify-center items-center gap-5 mb-5">
+                    <div
+                        id="heading"
                         className={
-                            "m-2 text-screenText text-xl active:animate-buttonPress" +
-                            " " +
-                            headingShadow +
-                            " " +
-                            iconDrop
-                        }
-                        onClick={handleNextTheme}
-                    >
-                        {themeIcon}
-                    </button>
-                </div>
-                <div
-                    id="heading"
-                    className={
-                        "flex justify-center items-center mb-5 text-xl text-screenText gap-2" +
-                        " " +
-                        headingShadow
-                    }
-                >
-                    <div>HISTORY:</div>
-                    <button
-                        className={
-                            "m-2 text-screenText text-xl active:animate-buttonPress" +
-                            " " +
+                            "flex justify-center items-center text-xl text-screenText gap-2" +
                             headingShadow
                         }
-                        onClick={() => {
-                            showHistory
-                                ? setShowHistory(false)
-                                : setShowHistory(true);
-                        }}
                     >
-                        ON/OFF
-                    </button>
+                        <button
+                            className={
+                                "text-screenText text-base active:animate-buttonPress p-2 flex items-center gap-2 w-[120px] justify-center hover:scale-105 transition-all" +
+                                headingShadow +
+                                iconDrop
+                            }
+                            onClick={handleNextTheme}
+                        >
+                            <div>THEME</div>
+                            <div className="text-base">{themeIcon}</div>
+                        </button>
+                    </div>
+                    <div
+                        id="heading"
+                        className={
+                            "flex justify-center items-center text-xl text-screenText gap-2" +
+                            headingShadow
+                        }
+                    >
+                        <button
+                            className={
+                                "text-base active:animate-buttonPress p-2 text-screenText flex items-center gap-2 w-[120px] justify-center hover:scale-105 transition-all" +
+                                headingShadow +
+                                iconDrop
+                            }
+                            onClick={() => {
+                                const historyContainer =
+                                    document.getElementById(
+                                        "history_container"
+                                    );
+
+                                showHistory
+                                    ? setShowHistory(false)
+                                    : setShowHistory(true);
+                            }}
+                        >
+                            <div>HISTORY</div>
+                            <div className="text-2xl">
+                                {showHistory ? (
+                                    <GrFormView />
+                                ) : (
+                                    <GrFormViewHide />
+                                )}
+                            </div>
+                        </button>
+                    </div>
                 </div>
             </div>
             <div className="flex md:flex-row flex-col items-center justify-center gap-10">
@@ -104,6 +116,7 @@ function App() {
                     history={history}
                     setHistory={setHistory}
                     showHistory={showHistory}
+                    theme={theme}
                 />
             </div>
 

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 * {
-    @apply transition-colors duration-300;
+    @apply transition-colors duration-500;
 }
 
 @font-face {
@@ -24,7 +24,8 @@ html {
 }
 
 #heading {
-    font-family: DSEG14Classic-BoldItalic;
+    /* font-family: DSEG14Classic-BoldItalic; */
+    font-family: Tommy;
     filter: drop-shadow(1px 2px 1px #000000ab);
 }
 
@@ -69,10 +70,6 @@ html {
     filter: drop-shadow(0px 5px 5px #000000d7);
 }
 
-.heading-shadow-classic {
-    text-shadow: #2ff5c7 0px 0 10px;
-}
-
 .icon-drop-classic {
     filter: drop-shadow(0 0 0.3rem #2ff5c7);
 }
@@ -85,12 +82,16 @@ html {
     filter: drop-shadow(0 0 0.3rem #890aff);
 }
 
+.heading-shadow-classic {
+    text-shadow: #2ff5c73d 0px 0 10px;
+}
+
 .heading-shadow-cherry {
-    text-shadow: #dc234b 0px 0 10px;
+    text-shadow: #dc234b3d 0px 0 10px;
 }
 
 .heading-shadow-grape {
-    text-shadow: #890aff 0px 0 10px;
+    text-shadow: #890aff3d 0px 0 10px;
 }
 
 .text-shadow-classic {

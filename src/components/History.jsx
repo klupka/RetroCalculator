@@ -1,7 +1,13 @@
 import { useEffect } from "react";
 import React from "react";
 
-const History = ({ headingShadow, history, setHistory, showHistory }) => {
+const History = ({
+    headingShadow,
+    history,
+    setHistory,
+    showHistory,
+    theme,
+}) => {
     useEffect(() => {
         var historyScreen = document.getElementById("history-screen");
         historyScreen.scrollTop = historyScreen.scrollHeight;
@@ -11,8 +17,15 @@ const History = ({ headingShadow, history, setHistory, showHistory }) => {
     if (showHistory) {
         historyShowState = "visible";
     }
+
+    const textShadow = " text-shadow-" + theme;
+
     return (
-        <div className={historyShowState}>
+        <div
+            className={
+                historyShowState + " md:animate-history animate-mobileHistory"
+            }
+        >
             <div
                 id="history"
                 className={
@@ -28,10 +41,20 @@ const History = ({ headingShadow, history, setHistory, showHistory }) => {
                                 id="history-screen"
                                 className="bg-screenBg rounded-md p-5 h-[426px] overflow-y-scroll overflow-x-hidden"
                             >
-                                <div className="flex justify-center mb-5 text-base">
+                                <div
+                                    className={
+                                        "flex justify-center mb-5 text-base" +
+                                        textShadow
+                                    }
+                                >
                                     History
                                 </div>
-                                <div className="text-xs flex flex-col gap-5">
+                                <div
+                                    className={
+                                        "text-xs flex flex-col gap-5" +
+                                        textShadow
+                                    }
+                                >
                                     {history.map((element, id) => {
                                         return (
                                             <div key={id}>

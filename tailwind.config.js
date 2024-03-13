@@ -9,6 +9,8 @@ export default {
             animation: {
                 buttonPress: "buttonPress 0.09s linear",
                 load: "load 1s ease-out",
+                history: "history 0.5s",
+                mobileHistory: "mobileHistory 0.5s",
             },
             keyframes: {
                 buttonPress: {
@@ -29,6 +31,34 @@ export default {
                     },
                     "100%": {
                         transform: "scale(1))",
+                    },
+                },
+                history: {
+                    "0%": {
+                        transform: "scale(0.95) translateX(-150px)",
+                        filter: "brightness(0.5)",
+                    },
+                    "50%": {
+                        transform: "scale(0.95) translateX(0px)",
+                        filter: "brightness(0.5)",
+                    },
+                    "100%": {
+                        transform: "scale(1)",
+                        filter: "brightness(1)",
+                    },
+                },
+                mobileHistory: {
+                    "0%": {
+                        transform: "scale(0.95) translateY(-150px)",
+                        filter: "brightness(0.5)",
+                    },
+                    "50%": {
+                        transform: "scale(0.95) translateY(0px)",
+                        filter: "brightness(0.5)",
+                    },
+                    "100%": {
+                        transform: "scale(1)",
+                        filter: "brightness(1)",
                     },
                 },
             },
