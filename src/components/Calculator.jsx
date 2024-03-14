@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-const Calculator = ({ theme, setHistory, history }) => {
+const Calculator = ({ theme, setHistory, history, calcMoveAnimation }) => {
     // Text to display on calculator screen
     const [screen, setScreen] = useState("0");
     // Define operand 1
@@ -205,7 +205,7 @@ const Calculator = ({ theme, setHistory, history }) => {
 
     return (
         // Body
-        <div className={theme + " z-10"}>
+        <div className={theme + " z-10 " + calcMoveAnimation}>
             <div
                 id="calc_body"
                 className="bg-outerShellBg px-5 rounded-xl pb-5 border-4 border-t-0 border-b-0 border-[#ffffff31]"

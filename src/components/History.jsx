@@ -7,6 +7,7 @@ const History = ({
     setHistory,
     showHistory,
     theme,
+    closeAnimation,
 }) => {
     useEffect(() => {
         var historyScreen = document.getElementById("history-screen");
@@ -20,12 +21,11 @@ const History = ({
 
     const textShadow = " text-shadow-" + theme;
 
+    const containerClassName = `${historyShowState} ${closeAnimation}`; //md:animate-history animate-mobileHistory
+    console.log(containerClassName);
+
     return (
-        <div
-            className={
-                historyShowState + " md:animate-history animate-mobileHistory"
-            }
-        >
+        <div className={containerClassName}>
             <div
                 id="history"
                 className={

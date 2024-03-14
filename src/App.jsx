@@ -18,6 +18,8 @@ function App() {
     const [themeIcon, setThemeIcon] = useState();
     const [history, setHistory] = useState([]);
     const [showHistory, setShowHistory] = useState(false);
+    const [closeAnimation, setCloseAnimation] = useState("");
+    const [calcMoveAnimation, setCalcMoveAnimation] = useState("");
 
     const handleNextTheme = () => {
         // Calculate the next index, wrapping around to 0 if it exceeds the length of the array
@@ -83,14 +85,31 @@ function App() {
                                 iconDrop
                             }
                             onClick={() => {
-                                const historyContainer =
-                                    document.getElementById(
-                                        "history_container"
-                                    );
+                                if (showHistory) {
+                                    // Hide history
 
-                                showHistory
-                                    ? setShowHistory(false)
-                                    : setShowHistory(true);
+                                    setTimeout(() => {
+                                        setCalcMoveAnimation(
+                                            "animate-calcMoveRight"
+                                        );
+                                    }, 5);
+                                    setCloseAnimation(
+                                        "animate-historyReversed"
+                                    );
+                                    setTimeout(() => {
+                                        setCloseAnimation("opacity-0");
+                                    }, 490);
+                                    setTimeout(() => {
+                                        setShowHistory(false);
+                                    }, 500);
+                                } else {
+                                    // Show history
+                                    setCalcMoveAnimation(
+                                        "animate-calcMoveLeft"
+                                    );
+                                    setCloseAnimation("animate-history");
+                                    setShowHistory(true);
+                                }
                             }}
                         >
                             <div>HISTORY</div>
@@ -110,6 +129,7 @@ function App() {
                     theme={theme}
                     setHistory={setHistory}
                     history={history}
+                    calcMoveAnimation={calcMoveAnimation}
                 />
                 <History
                     headingShadow={headingShadow}
@@ -117,6 +137,7 @@ function App() {
                     setHistory={setHistory}
                     showHistory={showHistory}
                     theme={theme}
+                    closeAnimation={closeAnimation}
                 />
             </div>
 

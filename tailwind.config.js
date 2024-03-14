@@ -11,6 +11,9 @@ export default {
                 load: "load 1s ease-out",
                 history: "history 0.5s",
                 mobileHistory: "mobileHistory 0.5s",
+                historyReversed: "historyReversed 0.5s",
+                calcMoveRight: "calcMoveRight 0.5s",
+                calcMoveLeft: "calcMoveLeft 0.5s",
             },
             keyframes: {
                 buttonPress: {
@@ -47,6 +50,23 @@ export default {
                         filter: "brightness(1)",
                     },
                 },
+                historyReversed: {
+                    "0%": {
+                        transform: "scale(1)",
+                        filter: "brightness(1)",
+                        //opacity: "100%",
+                    },
+                    "50%": {
+                        transform: "scale(0.95) translateX(0px)",
+                        filter: "brightness(0.5)",
+                        // opacity: "100%",
+                    },
+                    "100%": {
+                        transform: "scale(0.95) translateX(-203px)",
+                        filter: "brightness(0.5)",
+                        // opacity: "100%",
+                    },
+                },
                 mobileHistory: {
                     "0%": {
                         transform: "scale(0.95) translateY(-150px)",
@@ -59,6 +79,22 @@ export default {
                     "100%": {
                         transform: "scale(1)",
                         filter: "brightness(1)",
+                    },
+                },
+                calcMoveRight: {
+                    "0%": {
+                        transform: "translateX(0px)",
+                    },
+                    "100%": {
+                        transform: "translateX(203px)",
+                    },
+                },
+                calcMoveLeft: {
+                    "0%": {
+                        transform: "translateX(203px)",
+                    },
+                    "100%": {
+                        transform: "translateX(0px)",
                     },
                 },
             },
