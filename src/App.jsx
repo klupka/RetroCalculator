@@ -99,6 +99,16 @@ function App() {
                                     setTimeout(() => {
                                         setCloseAnimation("opacity-0");
                                     }, 490);
+
+                                    // Removes a flickering issue when animations don't exactly sync up perfectly
+                                    setTimeout(() => {
+                                        setCalcMoveAnimation("opacity-0");
+                                    }, 500);
+                                    setTimeout(() => {
+                                        setCalcMoveAnimation("opacity-100");
+                                    }, 502);
+                                    // End of flicker fix
+
                                     setTimeout(() => {
                                         setShowHistory(false);
                                     }, 500);

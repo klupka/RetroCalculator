@@ -34,12 +34,12 @@ const History = ({
                     headingShadow
                 }
             >
-                <div className="sm:w-[366px] w-[302px] bg-outerShellBg px-5 rounded-xl pb-5 border-4 border-t-0 border-b-0 border-[#ffffff31]">
+                <div className="sm:w-[364.67px] w-[302px] bg-outerShellBg px-5 rounded-xl pb-5 border-4 border-t-0 border-b-0 border-[#ffffff31]">
                     <div className="p-5 pb-0 bg-innerShellBg rounded-b-md border-[3px] border-[#383838]">
                         <div className="p-5 bg-outerScreenBg border-b-[#ffffff2a] border-t-[#ffffff15] border-y-4 rounded-md">
                             <div
                                 id="history-screen"
-                                className="bg-screenBg rounded-md p-5 h-[426px] overflow-y-scroll overflow-x-hidden"
+                                className="bg-screenBg rounded-md p-5 h-[425px] overflow-y-scroll overflow-x-hidden" // 426 height
                             >
                                 <div
                                     className={
