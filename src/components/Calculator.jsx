@@ -14,10 +14,17 @@ const Calculator = ({ theme, setHistory, history, calcMoveAnimation }) => {
     const [repeatOperation, setRepeatOperation] = useState([]);
 
     // If number is large for screen, convert to scientific notation
-    if (screen.length > 7) {
+    if (screen.length > 8) {
         let exponentialScreenFloat = parseFloat(screen).toExponential();
         let exponentialScreenString = exponentialScreenFloat.toString();
-        let firstThreeChars = exponentialScreenString.slice(0, 3);
+        let indexOfE = exponentialScreenString.indexOf("e");
+        let coefficient = exponentialScreenString.substring(0, indexOfE);
+
+        let firstThreeChars = coefficient.slice(0, 3);
+        if (exponentialScreenString.slice(0, 1) === "-") {
+            firstThreeChars = coefficient.slice(0, 4);
+        }
+
         let exponentVal = exponentialScreenString.slice(-3);
         // If the power of the scientific notation is 100 or above, return error. It is too large to print to screen
         if (!exponentVal.includes("+") && parseFloat(exponentVal) > 99) {
@@ -50,6 +57,7 @@ const Calculator = ({ theme, setHistory, history, calcMoveAnimation }) => {
             const regex = /\.?0+$/;
             return numberString.replace(regex, "");
         }
+
         return numberString;
     }
 
@@ -61,35 +69,35 @@ const Calculator = ({ theme, setHistory, history, calcMoveAnimation }) => {
             case "addition": {
                 let result = (
                     parseFloat(operandOne) + parseFloat(operandTwo)
-                ).toFixed(2);
+                ).toFixed(4);
                 result = removeTrailingZeros(result);
                 return result.toString();
             }
             case "multiply": {
                 let result = (
                     parseFloat(operandOne) * parseFloat(operandTwo)
-                ).toFixed(2);
+                ).toFixed(4);
                 result = removeTrailingZeros(result);
                 return result.toString();
             }
             case "subtract": {
                 let result = (
                     parseFloat(operandOne) - parseFloat(operandTwo)
-                ).toFixed(2);
+                ).toFixed(4);
                 result = removeTrailingZeros(result);
                 return result.toString();
             }
             case "divide": {
                 let result = (
                     parseFloat(operandOne) / parseFloat(operandTwo)
-                ).toFixed(2);
+                ).toFixed(4);
                 result = removeTrailingZeros(result);
                 return result.toString();
             }
             case "mod": {
                 let result = (
                     parseFloat(operandOne) % parseFloat(operandTwo)
-                ).toFixed(2);
+                ).toFixed(4);
                 result = removeTrailingZeros(result);
                 return result.toString();
             }
@@ -219,7 +227,7 @@ const Calculator = ({ theme, setHistory, history, calcMoveAnimation }) => {
                             {/* Screen Text */}
                             <div
                                 className={
-                                    "bottom-1 right-2 absolute sm:text-4xl text-3xl font-bold" +
+                                    "bottom-1 right-2 absolute sm:text-[2rem] text-3xl font-bold" +
                                     textShadow
                                 }
                                 id="screen_text"
