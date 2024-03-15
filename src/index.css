@@ -8,12 +8,12 @@
 
 @font-face {
     font-family: DSEG14Classic-BoldItalic;
-    src: url("src/resources/DSEG14Classic-BoldItalic.ttf");
+    src: url("./src/resources/DSEG14Classic-BoldItalic.ttf");
 }
 
 @font-face {
     font-family: Tommy;
-    src: url("src/resources/Tommy.otf");
+    src: url("./src/resources/Tommy.otf");
 }
 
 html {
