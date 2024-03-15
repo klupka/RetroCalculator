@@ -90,11 +90,11 @@ function App() {
 
                                     setTimeout(() => {
                                         setCalcMoveAnimation(
-                                            "animate-calcMoveRight"
+                                            "md:animate-calcMoveRight"
                                         );
                                     }, 5);
                                     setCloseAnimation(
-                                        "animate-historyReversed"
+                                        "md:animate-historyReversed animate-mobileHistoryReversed"
                                     );
                                     setTimeout(() => {
                                         setCloseAnimation("opacity-0");
@@ -115,9 +115,11 @@ function App() {
                                 } else {
                                     // Show history
                                     setCalcMoveAnimation(
-                                        "animate-calcMoveLeft"
+                                        "md:animate-calcMoveLeft"
                                     );
-                                    setCloseAnimation("animate-history");
+                                    setCloseAnimation(
+                                        "md:animate-history animate-mobileHistory"
+                                    );
                                     setShowHistory(true);
                                 }
                             }}

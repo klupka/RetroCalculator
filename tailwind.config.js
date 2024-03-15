@@ -12,6 +12,7 @@ export default {
                 history: "history 0.5s",
                 mobileHistory: "mobileHistory 0.5s",
                 historyReversed: "historyReversed 0.5s",
+                mobileHistoryReversed: "mobileHistoryReversed 0.5s",
                 calcMoveRight: "calcMoveRight 0.5s",
                 calcMoveLeft: "calcMoveLeft 0.5s",
             },
@@ -69,7 +70,7 @@ export default {
                 },
                 mobileHistory: {
                     "0%": {
-                        transform: "scale(0.95) translateY(-150px)",
+                        transform: "scale(0.95) translateY(-550px)",
                         filter: "brightness(0.5)",
                     },
                     "50%": {
@@ -79,6 +80,20 @@ export default {
                     "100%": {
                         transform: "scale(1)",
                         filter: "brightness(1)",
+                    },
+                },
+                mobileHistoryReversed: {
+                    "0%": {
+                        transform: "scale(1)",
+                        filter: "brightness(1)",
+                    },
+                    "50%": {
+                        transform: "scale(0.95) translateY(0px)",
+                        filter: "brightness(0.5)",
+                    },
+                    "100%": {
+                        transform: "scale(0.95) translateY(-550px)",
+                        filter: "brightness(0.5)",
                     },
                 },
                 calcMoveRight: {

@@ -39,7 +39,7 @@ const History = ({
                         <div className="p-5 bg-outerScreenBg border-b-[#ffffff2a] border-t-[#ffffff15] border-y-4 rounded-md">
                             <div
                                 id="history-screen"
-                                className="bg-screenBg rounded-md p-5 h-[425px] overflow-y-scroll overflow-x-hidden" // 426 height
+                                className="bg-screenBg rounded-md p-5 md:h-[425px] h-[306px] overflow-y-scroll overflow-x-hidden" // 426 height
                             >
                                 <div
                                     className={
