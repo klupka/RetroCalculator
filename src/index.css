@@ -82,6 +82,10 @@ html {
     filter: drop-shadow(0 0 0.3rem #890aff);
 }
 
+.icon-drop-banana {
+    filter: drop-shadow(0 0 0.3rem #dbdb53);
+}
+
 .heading-shadow-classic {
     text-shadow: #2ff5c73d 0px 0 10px;
 }
@@ -92,6 +96,10 @@ html {
 
 .heading-shadow-grape {
     text-shadow: #890aff3d 0px 0 10px;
+}
+
+.heading-shadow-banana {
+    text-shadow: #dbdb5344 0px 0 10px;
 }
 
 .text-shadow-classic {
@@ -106,22 +114,22 @@ html {
     text-shadow: #890aff 0px 0 15px;
 }
 
-/* width */
+.text-shadow-banana {
+    text-shadow: #dbdb53 0px 0 10px;
+}
+
 ::-webkit-scrollbar {
     width: 2px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
     background: transparent;
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
     background: #1f1f1f;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #ffffff;
 }

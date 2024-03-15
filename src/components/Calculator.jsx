@@ -218,7 +218,7 @@ const Calculator = ({ theme, setHistory, history, calcMoveAnimation }) => {
                 id="calc_body"
                 className="bg-outerShellBg px-5 rounded-xl pb-5 border-4 border-t-0 border-b-0 border-[#ffffff31]"
             >
-                <div className="border-[3px] border-[#383838] rounded-b-md bg-innerShellBg">
+                <div className="border-[3px] border-[#ffffff2a] rounded-b-md bg-innerShellBg">
                     <div className="bg-outerScreenBg sm:p-5 m-5 border-b-[#ffffff2a] border-t-[#ffffff15] border-y-4 rounded-md">
                         <div
                             id="screen"

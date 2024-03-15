@@ -5,14 +5,15 @@ import "./index.css";
 
 import { LuCherry } from "react-icons/lu";
 import { LuGrape } from "react-icons/lu";
+import { LuBanana } from "react-icons/lu";
 import { FaCalculator } from "react-icons/fa";
 
 import { GrFormViewHide } from "react-icons/gr";
 import { GrFormView } from "react-icons/gr";
 
 function App() {
-    const themes = ["classic", "cherry", "grape"];
-    const icons = [<FaCalculator />, <LuCherry />, <LuGrape />];
+    const themes = ["classic", "cherry", "grape", "banana"];
+    const icons = [<FaCalculator />, <LuCherry />, <LuGrape />, <LuBanana />];
     const [themeIndex, setThemeIndex] = useState(0);
     const [theme, setTheme] = useState(themes[0]);
     const [themeIcon, setThemeIcon] = useState();

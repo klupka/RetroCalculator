@@ -22,7 +22,6 @@ const History = ({
     const textShadow = " text-shadow-" + theme;
 
     const containerClassName = `${historyShowState} ${closeAnimation}`; //md:animate-history animate-mobileHistory
-    console.log(containerClassName);
 
     return (
         <div className={containerClassName}>
