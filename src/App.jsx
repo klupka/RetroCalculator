@@ -39,7 +39,7 @@ function App() {
 
     return (
         <div className={"animate-load" + " " + theme}>
-            <div className="my-10">
+            <div className="my-5">
                 <div
                     id="heading"
                     className={
@@ -155,10 +155,11 @@ function App() {
                     closeAnimation={closeAnimation}
                 />
             </div>
-
-            <div id="credit" className="text-center text-xs my-10">
+            <div id="credit" className="text-center text-xs my-8">
                 @ 2024 Seth Klupka. All Rights Reserved.
             </div>
+            {/* The margin for the div above does not work on the bottom, so the div below is a hardcoded method to solve this issue */}
+            <div className="text-center text-white opacity-0">.</div>
         </div>
     );
 }

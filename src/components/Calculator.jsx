@@ -245,7 +245,6 @@ const Calculator = ({ theme, setHistory, history, calcMoveAnimation }) => {
                         <div>
                             <button
                                 className="bg-clearBtnBg border-t-[#ffffff4d] border-b-[#00000034] border-transparent text-clearBtnText text-lg w-10 h-10 sm:h-14 sm:w-14"
-                                // border-t-[#FBA57C] border-b-[#a75837]
                                 onClick={() => {
                                     setScreen("0");
                                     setOperandOne("");

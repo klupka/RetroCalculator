@@ -8,7 +8,7 @@
 
 @font-face {
     font-family: DSEG14Classic-BoldItalic;
-    src: url("src/resources/DSEG14Classic-BoldItalic.ttf"); /*DSEG7Classic-BoldItalic */
+    src: url("src/resources/DSEG14Classic-BoldItalic.ttf");
 }
 
 @font-face {
@@ -24,7 +24,6 @@ html {
 }
 
 #heading {
-    /* font-family: DSEG14Classic-BoldItalic; */
     font-family: Tommy;
     filter: drop-shadow(1px 2px 1px #000000ab);
 }
