@@ -135,7 +135,7 @@ export default {
             cherry: {
                 screenText: "#FFFFFF",
                 screenBg: "#0d0001",
-                outerScreenBg: "#080105",
+                outerScreenBg: "#030001",
                 numberBtnBg: "#575853",
                 operationBtnBg: "#dc234b",
                 clearBtnBg: "#C4C7B6",
@@ -149,8 +149,8 @@ export default {
             },
             grape: {
                 screenText: "#FFFFFF",
-                screenBg: "#07000f",
-                outerScreenBg: "#05000a",
+                screenBg: "#0a0014",
+                outerScreenBg: "#030005",
                 numberBtnBg: "#392b40",
                 operationBtnBg: "#673280",
                 clearBtnBg: "#C4C7B6",
@@ -164,8 +164,8 @@ export default {
             },
             banana: {
                 screenText: "#FFFFFF",
-                screenBg: "#0a0a00",
-                outerScreenBg: "#080800",
+                screenBg: "#080800",
+                outerScreenBg: "#030300",
                 numberBtnBg: "#edede1",
                 operationBtnBg: "#dbdb53",
                 clearBtnBg: "#242421",
