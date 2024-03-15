@@ -101,12 +101,12 @@ export default {
                         transform: "translateX(0px)",
                     },
                     "100%": {
-                        transform: "translateX(203px)",
+                        transform: "translateX(200px)", //203
                     },
                 },
                 calcMoveLeft: {
                     "0%": {
-                        transform: "translateX(203px)",
+                        transform: "translateX(200px)",
                     },
                     "100%": {
                         transform: "translateX(0px)",

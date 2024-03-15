@@ -136,7 +136,9 @@ function App() {
                     </div>
                 </div>
             </div>
-            <div className="flex md:flex-row flex-col items-center justify-center gap-10">
+            <div
+                className="flex md:flex-row flex-col items-center justify-center gap-9" /* gap-10*/
+            >
                 <Calculator
                     theme={theme}
                     setHistory={setHistory}
