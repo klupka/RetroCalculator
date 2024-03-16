@@ -1,6 +1,6 @@
 # Retro Calculator
 
-🔗 <a href="https://klupka.github.io/calculator/">Retro Calculator</a>
+🔗 <a href="https://klupka.github.io/RetroCalculator/">Retro Calculator</a>
 
 ## Description
 
